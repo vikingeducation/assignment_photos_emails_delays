@@ -1,0 +1,4 @@
+assignment_photos
+=================
+
+Cheese!
