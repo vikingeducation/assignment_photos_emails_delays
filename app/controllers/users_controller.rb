@@ -57,12 +57,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def serve_photo
-    @user = User.find(params[:user_id])
-    send_data(@user.photo,  :type => @user.photo_type,
-                            :filename => "#{@user.filename}.jpg",
-                            :disposition => "inline" )
-  end
 
 
   # DELETE /users/1
@@ -93,6 +87,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :photo)
+      params.require(:user).permit(:username, :email, :photo, :profile)
     end
 end
