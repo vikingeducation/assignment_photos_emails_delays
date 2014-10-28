@@ -24,7 +24,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:photo)) do |t|
+      if user_params[:photo]
+        t.photo = user_params[:photo].read
+        t.filename = user_params[:photo].original_filename
+        t.photo_type = user_params[:photo].content_type
+      end
+    end
 
     respond_to do |format|
       if @user.save
@@ -51,6 +57,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def serve_photo
+    @user = User.find(params[:user_id])
+    send_data(@user.photo,  :type => @user.photo_type,
+                            :filename => "#{@user.filename}.jpg",
+                            :disposition => "inline" )
+  end
+
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -62,6 +76,16 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def upload
+      uploaded_io = params[:person][:picture]
+      File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+        # Note that we're using the `read` method
+        file.write(uploaded_io.read)
+      end
+    end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -69,6 +93,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :photo)
     end
 end
