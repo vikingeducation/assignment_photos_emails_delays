@@ -12,5 +12,8 @@
 
 <%= image_tag @user.profile.url(:thumb) if @user.profile.url(:thumb) %>
 
+<h2>And now the same image but expiring!</h2>
+<%= image_tag @user.profile.expiring_url(10) %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
