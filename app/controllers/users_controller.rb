@@ -12,6 +12,13 @@ class UsersController < ApplicationController
   def show
   end
 
+  def serve
+    @user = User.find(params[:user_id])
+    send_data(@user.photo, :type => @user.mime_type,
+                           :filename => "#{@user.photoname}.jpg",
+                           :disposition => "inline")
+  end
+
   # GET /users/new
   def new
     @user = User.new
@@ -24,7 +31,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:photo)) do |t|
+      if user_params[:photo]
+        t.photo      = user_params[:photo].read
+        t.photoname  = user_params[:photo].original_filename
+        t.mime_type  = user_params[:photo].content_type
+      end
+    end
 
     respond_to do |format|
       if @user.save
@@ -69,6 +82,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :photo)
     end
 end
