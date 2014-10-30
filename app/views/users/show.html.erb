@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @user.photo.url(:thumb) %>
 <p>
   <strong>Username:</strong>
   <%= @user.username %>
@@ -10,7 +11,6 @@
   <%= @user.email %>
 </p>
 
-<%= image_tag user_serve_path(@user) %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
