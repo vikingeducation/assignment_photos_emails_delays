@@ -50,4 +50,6 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
+
+  config.action_mailer.delivery_method = :letter_opener
 end
