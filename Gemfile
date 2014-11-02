@@ -29,6 +29,8 @@ group :development do
   gem "letter_opener"
 end
 
+gem 'delayed_job_active_record'
+
 gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk'
