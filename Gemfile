@@ -2,18 +2,27 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'figaro'
-gem 'paperclip'
-gem 'aws-sdk'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
+gem 'letter_opener', group: :development
 
 gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 
+gem 'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+gem 'delayed_job_active_record'
 
 
 # Use SCSS for stylesheets

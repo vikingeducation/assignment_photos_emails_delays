@@ -9,4 +9,9 @@ class User < ActiveRecord::Base
   attr_accessor :delete_profile
 
   before_validation { profile.clear if delete_profile == '1' }
+
+  def self.send_welcome_email(id)
+    user = User.find(id)
+    UserMailer.welcome(user).deliver!
+  end
 end

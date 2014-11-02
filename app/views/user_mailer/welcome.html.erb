@@ -1,0 +1,9 @@
+<h1>Welcome!</h1>
+
+<p>
+  Hi <%= @user.username %>, if that really is your name. You will never escape our mailing list now!
+</p>
+
+<p>
+  View your page at <%= link_to "#{user_url(@user.id)}", user_url(@user.id) %>
+</p>
