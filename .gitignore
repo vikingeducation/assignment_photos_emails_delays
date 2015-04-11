@@ -16,8 +16,5 @@
 !/log/.keep
 /tmp
 
-# Ignore public system files
-/public/system
-
 # Ignore application configuration
 /config/application.yml
