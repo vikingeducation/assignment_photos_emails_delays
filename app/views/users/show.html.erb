@@ -12,7 +12,7 @@
 
 <p>
   <strong>Profile pic:</strong>
-  <%= image_tag @user.profile_photo.url %>
+  <%= image_tag @user.profile_photo.expiring_url(10) %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
