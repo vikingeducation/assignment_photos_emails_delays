@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'paperclip'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
 # Use Capistrano for deployment
