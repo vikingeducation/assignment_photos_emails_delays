@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
-        User.send_welcome_email(@user).deliver
+        User.delay(run_at: 5.minutes.from_now).send_welcome_email(@user).deliver
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
