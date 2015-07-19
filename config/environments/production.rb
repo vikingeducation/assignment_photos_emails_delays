@@ -14,7 +14,19 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.aws_access_key_secret
     }
   }
-  
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: 'app38880671@heroku.com',
+    password: 'rekohaln0204',
+    domain: "https://quiet-spire-6855.herokuapp.com/",
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = { host: 'localhost' }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
