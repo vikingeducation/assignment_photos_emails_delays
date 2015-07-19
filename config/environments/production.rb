@@ -25,7 +25,7 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  config.action_mailer.default_url_options = { host: 'localhost' }
+  config.action_mailer.default_url_options = { host: "https://quiet-spire-6855.herokuapp.com" }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
