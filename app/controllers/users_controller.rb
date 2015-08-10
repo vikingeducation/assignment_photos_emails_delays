@@ -8,6 +8,12 @@ class UsersController < ApplicationController
       file.write(uploaded_io.read)
     end
   end
+
+  def serve
+    @user = User.find(params[:id])
+    send_data(@user.picture, filename: "image.jpg", disposition: 'inline')
+
+  end
   # GET /users
   # GET /users.json
   def index
@@ -35,8 +41,6 @@ class UsersController < ApplicationController
 
       if user_params[:picture]
         t.picture = user_params[:picture].read
-        # t.filename = user_params[:picture].original_filename
-        # t.mime_type = user_params[:picture].content_type
       end
     end
     respond_to do |format|
@@ -54,7 +58,13 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+
+
+      if @user.update(user_params.except(:picture)) do |t|
+          if user_params[:picture]
+            t.picture = user_params[:picture].read
+          end
+        end
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -82,6 +92,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :picture)
+      params.require(:user).permit(:username, :email, :avatar)
     end
 end
