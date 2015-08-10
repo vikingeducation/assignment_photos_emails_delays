@@ -15,5 +15,9 @@
   <%= image_tag user_serve_path(user_id: @user.id) %>
 </p>
 
+<p>
+  <strong>Avatar:</strong>
+  <%= image_tag @user.avatar.expiring_url(:thumb, 10) %>
+</p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
