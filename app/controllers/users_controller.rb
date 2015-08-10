@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  def upload
+    uploaded_io = params[:user][:picture]
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      # Note that we're using the `read` method
+      file.write(uploaded_io.read)
+    end
+  end
   # GET /users
   # GET /users.json
   def index
@@ -24,8 +31,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:picture)) do |t|
 
+      if user_params[:picture]
+        t.picture = user_params[:picture].read
+        # t.filename = user_params[:picture].original_filename
+        # t.mime_type = user_params[:picture].content_type
+      end
+    end
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -69,6 +82,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :picture)
     end
 end
