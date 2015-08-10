@@ -11,7 +11,9 @@
 </p>
 
 <%# #image_tag user_serve_path(user_id: @user.id) %>
-<%= image_tag @user.avatar.url %>
+<%= image_tag @user.avatar.expiring_url(10) %>
+<%= image_tag @user.avatar.expiring_url(10, :medium) %>
+<%= image_tag @user.avatar.expiring_url(10, :thumb) %>
 
 <br>
 
