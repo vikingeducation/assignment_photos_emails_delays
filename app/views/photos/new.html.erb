@@ -1,0 +1,7 @@
+<h1>Photos#new</h1>
+<p>Find me in app/views/photos/new.html.erb</p>
+
+<%= form_tag({:controller => :photos, :action => :create}, :multipart => true) do %>
+  <%= file_field_tag :data %>
+  <%= submit_tag %>
+<% end %>

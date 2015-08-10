@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :users
+  get 'photos/new'
+
+
+  resources :users do
+    resource :photos, only: [:new, :create]
+  end
+
+  root to: 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
