@@ -38,4 +38,18 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Paperclip.options[:command_path] = "/usr/local/bin"
+
+  config.paperclip_defaults = {
+    :s3_credentials => {
+      :secret_access_key => Rails.application.secrets.aws_secret_access_key,
+      :s3_bucket_name => Rails.application.secrets.
+        s3_bucket_name,
+      :aws_access_key_id => Rails.application.secrets.aws_access_key_id
+
+    }
+  }
+
+
 end
