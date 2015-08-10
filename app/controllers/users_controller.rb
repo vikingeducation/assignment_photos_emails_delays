@@ -70,7 +70,7 @@ class UsersController < ApplicationController
               type: "user/png",
               disposition: "inline")
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -81,9 +81,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :email, :photo)
     end
-
-
-
 
 end
 
