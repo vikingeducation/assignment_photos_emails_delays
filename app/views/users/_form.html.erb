@@ -1,0 +1,32 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <%= f.label :profile_pic %><br>
+  <%= f.file_field :profile_pic %><br>
+  <% if @user.persisted? %>
+    <%= f.label :delete_pic, "Remove Profile Pic" %>
+    <%= f.check_box :delete_pic %>
+  <% end %>
+  <div class="actions">
+  <hr>
+    <%= f.submit %>
+  </div>
+<% end %>
