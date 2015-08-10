@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag image_path(@user.profile_photo_path) %>
+<%= image_tag @user.profile_pic.url(:thumb) %>
 
 <p>
   <strong>Username:</strong>
