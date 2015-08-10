@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def serve
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     send_data(@user.picture, filename: "image.jpg", disposition: 'inline')
 
   end
