@@ -5,12 +5,13 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar,
                                     :content_type => /\Aimage\/.*\Z/
 
-  after_create :send_welcome_email
+  #after_create :send_welcome_email
 
   private
 
-  def send_welcome_email
-    UserMailer.welcome(self).deliver!
+  def self.send_welcome_email(id)
+    user= User.find(id)
+    UserMailer.welcome(user).deliver!
   end
 
 end
