@@ -31,8 +31,6 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if @user.save
-        # binding.pry
-        User.delay.send_welcome_email(@user.id)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
