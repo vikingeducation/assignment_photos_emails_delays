@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<%# #image_tag user_serve_path(user_id: @user.id) %>
+<%= image_tag @user.avatar.expiring_url(10) %>
+<%= image_tag @user.avatar.expiring_url(10, :medium) %>
+<%= image_tag @user.avatar.expiring_url(10, :thumb) %>
+
+<br>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
