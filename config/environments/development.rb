@@ -15,6 +15,11 @@ Rails.application.configure do
     }
   }
 
+  # Adding letter opener to catch emails during local testing and development
+  config.action_mailer.delivery_method = :letter_opener
+
+  config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
+
 
   # config/environments/development.rb
   # This is your imagemagick directory, retrieved
