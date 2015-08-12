@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
   def send_welcome_email
     User.send_welcome_email(self.id)
   end
-  handle_asynchronously :send_welcome_email,
-                        :run_at => Proc.new {15.seconds.from_now},
-                        :priority => 1
+  # handle_asynchronously :send_welcome_email,
+                        # :run_at => Proc.new {15.seconds.from_now},
+                        # :priority => 1
 
   def self.send_welcome_email(id)
     user= User.find(id)
