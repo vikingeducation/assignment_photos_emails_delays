@@ -15,7 +15,7 @@ Rails.application.configure do
     }
   }
 
-  config.action_mailer.default_url_options = { :host => 'assignment_photos_emails_delays.com' }
+  config.action_mailer.default_url_options = { :host => 'https://sleepy-anchorage-1586.herokuapp.com/' }
 
 
   # Code is not reloaded between requests.
