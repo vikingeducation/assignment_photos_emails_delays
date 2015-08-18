@@ -49,3 +49,5 @@ end
 gem 'binding_of_caller'
 
 gem 'paperclip'
+gem 'figaro'
+gem 'aws-sdk', '< 2.0'
