@@ -11,7 +11,7 @@
 </p>
 
 <div>
-  <%= image_tag profile_photo_path(@user) %>
+  <%= image_tag @user.profile_photo.url %>
 </div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
