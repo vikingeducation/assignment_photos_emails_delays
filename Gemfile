@@ -44,6 +44,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "letter_opener"
   gem 'better_errors'
 end
 gem 'binding_of_caller'
@@ -51,3 +52,4 @@ gem 'binding_of_caller'
 gem 'paperclip'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
+gem 'delayed_job_active_record'
