@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'users#index'
+
   resources :users
   get 'users/:id/profile_photo' => 'users#serve_photo', as: :profile_photo
 
