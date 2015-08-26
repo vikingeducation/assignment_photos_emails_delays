@@ -11,7 +11,7 @@
 </p>
 
 <div>
-  <%= image_tag @user.profile_photo.expiring_url(3) %>
+  <%= image_tag @user.profile_photo.expiring_url(3) if @user.profile_photo_file_name %>
 </div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
