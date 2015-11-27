@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'paperclip'
+gem 'figaro'
+gem 'aws-sdk', '< 2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

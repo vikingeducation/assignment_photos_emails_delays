@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <img src="<%= @user.profile_photo_url %>" alt="Profile Photo">
+  <%= image_tag(@user.avatar.url(:thumb)) %>
 </p>
 
 <p>

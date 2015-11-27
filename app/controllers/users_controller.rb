@@ -73,7 +73,7 @@ class UsersController < ApplicationController
         .permit(
           :username,
           :email,
-          :profile_photo
+          :avatar
         )
     end
 end
