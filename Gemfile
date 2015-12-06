@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
+ruby ENV['RBENV_VERSION'] || '2.2.0'
 
 gem 'letter_opener', :group => :development
 gem 'delayed_job_active_record'
-gem 'pg', :group => :production
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+  gem 'daemons'
+end
 gem 'paperclip'
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
