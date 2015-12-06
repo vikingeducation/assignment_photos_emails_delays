@@ -11,12 +11,12 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.secret_access_key
     }
   }
-  
+
   # ----------------------------------------
   # Letter Opener
   # ----------------------------------------
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.default_url_options = {:host => 'bideowego-photos-emails-delays.herokuapp.com'}
+  config.action_mailer.delivery_method ||= :smtp
+  config.action_mailer.default_url_options = {:host => 'www.bideowego-photos-emails-delays.herokuapp.com'}
 
 
   # Settings specified here will take precedence over those in config/application.rb.
