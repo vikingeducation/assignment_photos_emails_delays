@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      get "photo"
+    end
+  end
 
   root 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
