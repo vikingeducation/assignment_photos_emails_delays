@@ -50,5 +50,9 @@ Rails.application.configure do
       access_key_id: Rails.application.secrets.aws_access_key,
       secret_access_key: Rails.application.secrets.aws_secret_access_key
     }
-  }  
+  } 
+
+  # Letter Opener
+  config.action_mailer.delivery_method = :letter_opener 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
