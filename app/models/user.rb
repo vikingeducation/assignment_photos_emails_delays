@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   before_validation { photo.clear if delete_photo == '1' }
 
   after_create do
-    User.delay.send_welcome_email(self.id)
+    User.send_welcome_email(self.id)
   end
 
   
