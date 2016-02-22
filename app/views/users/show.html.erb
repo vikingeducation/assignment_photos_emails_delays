@@ -12,7 +12,7 @@
 
 <h1>Show Photo</h1>
 
-<%= image_tag user_serve_path(@user), method: "GET" %>
+<%= image_tag  @user.avatar.url %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
