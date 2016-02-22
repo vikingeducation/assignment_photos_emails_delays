@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<h3>Old Way</h3>
+<%= image_tag user_serve_path(user_id: @user.id) %>
+
+<h3>Paperclip Way</h3>
+<%= image_tag @user.photo.url %>
+<%= image_tag @user.photo.url(:medium) %>
+<%= image_tag @user.photo.url(:thumb) %>
+<%= image_tag @user.photo.url(:text) %>
+
+<%= image_tag @user.photo.expiring_url(10, :thumb) %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
