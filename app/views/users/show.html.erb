@@ -10,5 +10,10 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <strong>Profile Picture:</strong>
+  <%= image_tag @user.profile_photo_file_name %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
