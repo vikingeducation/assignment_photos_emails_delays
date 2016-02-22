@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222171151) do
+ActiveRecord::Schema.define(version: 20160222174338) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 20160222171151) do
     t.binary   "profile_photo_data"
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_mime_type"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    send_data(@user.profile_photo_data, type: @user.profile_photo_mime_type, filename: "#{@user.profile_photo_file_name}", disposition: "inline")
+    #send_data(@user.profile_photo_data, type: @user.profile_photo_mime_type, filename: "#{@user.profile_photo_file_name}", disposition: "inline")
   end
 
   # GET /users/new
@@ -70,6 +70,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :profile_photo)
+      params.require(:user).permit(
+        :username, 
+        :email, 
+        :profile_photo,
+        :avatar)
     end
 end

@@ -10,10 +10,29 @@
   <%= @user.email %>
 </p>
 
+<!--
 <p>
   <strong>Profile Picture:</strong>
+  
   <%= image_tag @user.profile_photo_file_name %>
+
 </p>
+-->
+<p>
+  <strong>Avtar Normal:</strong>
+  <%= image_tag @user.avatar.url %>
+</p>  
+
+<p>
+  <strong>Avtar Medium:</strong>
+  <%= image_tag @user.avatar.url(:medium) %>
+</p>
+
+<p>
+  <strong>Avtar Thumb:</strong>
+  <%= image_tag @user.avatar.url(:thumb) %>
+</p> 
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
