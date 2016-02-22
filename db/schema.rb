@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20160222172933) do
   create_table "users", force: :cascade do |t|
     t.string   "username",           null: false
     t.string   "email",              null: false
-    t.binary   "data",               null: false
-    t.string   "mime_type",          null: false
-    t.string   "filename",           null: false
+    t.binary   "data"
+    t.string   "mime_type"
+    t.string   "filename"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "photo_file_name"
