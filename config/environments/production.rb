@@ -11,7 +11,7 @@ Rails.application.configure do
       # put your host name here if needed
       #   see the reading below for more details
       # NOTE: This must be the correct region for YOU
-      :s3_host_name => "s3-website-us-west-2.amazonaws.com",
+      :s3_host_name => "s3-us-west-2.amazonaws.com",
 
       # NOTE: these lines are changed to use secrets.yml
       # from the examples (which use ENV vars instead)
@@ -20,7 +20,7 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
-  
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
