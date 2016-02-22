@@ -31,7 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #
 gem 'paperclip'
 gem 'figaro'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

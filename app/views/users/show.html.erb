@@ -13,6 +13,10 @@
 <p>
   <strong>Photo:</strong>
   <%= image_tag @user.avatar.url(:medium) %>
+<p>
+
+</p>
+  <%= link_to 'You Have 3 Seconds To Download', @user.avatar.expiring_url(3) %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
