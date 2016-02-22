@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params.except(:photo_data)) do |t|
-      if photo_params[:photo_data]
+      if user_params[:photo_data]
         t.data      = photo_params[:photo_data].read
         t.filename  = photo_params[:photo_data].original_filename
         t.mime_type = photo_params[:photo_data].content_type
