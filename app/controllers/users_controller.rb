@@ -10,12 +10,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    # debug
-    # basic_image(@user)
-  end
-
-  def basic_image(user)
-    send_data(user.profile_photo_data, type: user.profile_photo_mime_type, disposition: "inline")
   end
 
   # GET /users/new
@@ -67,7 +61,17 @@ class UsersController < ApplicationController
     end
   end
 
+
+
+  def profile_photo
+    @user = User.find(params[:user_id])
+    send_data(@user.profile_photo_data, :type => @user.profile_photo_mime_type, :filename => "#{@user.profile_photo_file_name}", :disposition => "inline")
+  end
+
+
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
