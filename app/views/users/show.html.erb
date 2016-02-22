@@ -17,6 +17,9 @@
 <%= image_tag @user.photo.url %>
 <%= image_tag @user.photo.url(:medium) %>
 <%= image_tag @user.photo.url(:thumb) %>
+<%= image_tag @user.photo.url(:text) %>
+
+<%= image_tag @user.photo.expiring_url(10, :thumb) %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
