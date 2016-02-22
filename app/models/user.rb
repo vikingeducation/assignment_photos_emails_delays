@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+
+  attr_accessor :delete_avatar
+  before_validation { avatar.clear if delete_avatar == '1' }
+  
+
   def profile_photo=(profile_photo)
     self.profile_photo_data = profile_photo.read
     self.profile_photo_file_name  = profile_photo.original_filename

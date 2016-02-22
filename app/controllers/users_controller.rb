@@ -10,7 +10,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    #send_data(@user.profile_photo_data, type: @user.profile_photo_mime_type, filename: "#{@user.profile_photo_file_name}", disposition: "inline")
+    # debug
+    # basic_image(@user)
+  end
+
+  def basic_image(user)
+    send_data(user.profile_photo_data, type: user.profile_photo_mime_type, disposition: "inline")
   end
 
   # GET /users/new
@@ -74,6 +79,7 @@ class UsersController < ApplicationController
         :username, 
         :email, 
         :profile_photo,
-        :avatar)
+        :avatar,
+        :delete_avatar)
     end
 end

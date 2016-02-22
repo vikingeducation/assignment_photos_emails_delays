@@ -10,26 +10,24 @@
   <%= @user.email %>
 </p>
 
-<!--
+
 <p>
   <strong>Profile Picture:</strong>
-  
-  <%= image_tag @user.profile_photo_file_name %>
-
+  <%= image_tag(@user.profile_photo_file_name) %>
 </p>
--->
+
 <p>
-  <strong>Avtar Normal:</strong>
+  <strong>Avatar Normal:</strong>
   <%= image_tag @user.avatar.url %>
 </p>  
 
 <p>
-  <strong>Avtar Medium:</strong>
+  <strong>Avatar Medium:</strong>
   <%= image_tag @user.avatar.url(:medium) %>
 </p>
 
 <p>
-  <strong>Avtar Thumb:</strong>
+  <strong>Avatar Thumb:</strong>
   <%= image_tag @user.avatar.url(:thumb) %>
 </p> 
 
