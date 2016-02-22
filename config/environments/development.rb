@@ -43,6 +43,7 @@ Rails.application.configure do
     storage: :s3,
 
     s3_credentials: {
+      # weird issue had us using url instead
       url: "s3-us-east-1.amazonaws.com",
       bucket: Rails.application.secrets.s3_bucket_name,
       access_key_id: Rails.application.secrets.aws_access_key_id,
