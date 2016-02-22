@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find( params[:id] )
-    serve if params[:photo_id]
   end
 
   # GET /users/new
@@ -27,8 +26,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -41,10 +38,11 @@ class UsersController < ApplicationController
   end
 
   def serve
-    @photo = Photo.find(params[:photo_id])
-    send_data(@photo.data,  :type => @photo.mime_type, 
-                            :filename => "#{@frisbee3.filename}.jpg",
-                            :disposition => "inline")
+    @photo = User.find(params[:user_id])
+    send_data( @photo.profile_photo, 
+        :type => @photo.mime_type,
+        :filename => @photo.filename,
+        :disposition => "inline")    
   end
 
   # PATCH/PUT /users/1
