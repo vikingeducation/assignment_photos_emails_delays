@@ -39,3 +39,8 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+
+# config/environments/development.rb
+# This is your imagemagick directory, retrieved
+# using `which convert`
+Paperclip.options[:command_path] = "/usr/bin"

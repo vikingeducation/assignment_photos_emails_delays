@@ -10,5 +10,13 @@
   <%= @user.email %>
 </p>
 
+<h3>Old Way</h3>
+<%= image_tag user_serve_path(user_id: @user.id) %>
+
+<h3>Paperclip Way</h3>
+<%= image_tag @user.photo.url %>
+<%= image_tag @user.photo.url(:medium) %>
+<%= image_tag @user.photo.url(:thumb) %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

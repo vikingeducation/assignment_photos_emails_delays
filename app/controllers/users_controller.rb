@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -61,6 +62,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def serve
+    @user = User.find(params[:user_id])
+    send_data(@user.data, :type => @user.mime_type, :filename => "#{@user.filename}", :disposition => "inline")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -69,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :photo_data)
+      params.require(:user).permit(:username, :email, :photo_data, :photo)
     end
 end
