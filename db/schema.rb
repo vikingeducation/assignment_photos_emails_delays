@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222172333) do
+ActiveRecord::Schema.define(version: 20160222182902) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.binary   "profile_photo"
+    t.string   "filename"
+    t.string   "mime_type"
   end
 
 end
