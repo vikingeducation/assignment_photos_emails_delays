@@ -98,4 +98,5 @@ Rails.application.configure do
     :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
+}
 end

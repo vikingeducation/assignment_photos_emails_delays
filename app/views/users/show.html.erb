@@ -28,7 +28,7 @@
 
 <p>
   <strong>Avatar Thumb:</strong>
-  <%= image_tag @user.avatar.url(:thumb) %>
+  <%= image_tag @user.avatar.expiring_url(10, :thumb) %>
 </p> 
 
 
