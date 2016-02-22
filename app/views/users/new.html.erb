@@ -2,4 +2,12 @@
 
 <%= render 'form' %>
 
+<h1>Upload a photo!</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.file_field :photo_data %>
+  <%= f.submit %>
+<% end %>
+
+
 <%= link_to 'Back', users_path %>

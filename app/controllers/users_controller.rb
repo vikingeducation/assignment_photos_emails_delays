@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find( params[:id] )
+    serve
   end
 
   # GET /users/new
@@ -24,7 +26,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:photo_data)) do |t|
+      if photo_params[:photo_data]
+        t.data      = photo_params[:photo_data].read
+        t.filename  = photo_params[:photo_data].original_filename
+        t.mime_type = photo_params[:photo_data].content_type
+      end
+    end
+
 
     respond_to do |format|
       if @user.save
@@ -35,6 +44,13 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def serve
+    @photo = Photo.find(params[:photo_id])
+    send_data(@photo.data,  :type => @photo.mime_type, 
+                            :filename => "#{@frisbee3.filename}.jpg",
+                            :disposition => "inline")
   end
 
   # PATCH/PUT /users/1
@@ -69,6 +85,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :photo_data )
     end
 end
