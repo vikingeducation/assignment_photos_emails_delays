@@ -84,8 +84,6 @@ Rails.application.configure do
     # NOTE: This must be the correct region for YOU
     # :s3_host_name => "s3-us-west-1.amazonaws.com",
     :url => "s3-us-east-1.amazonaws.com",
-    # might need to try this if you get an error:
-    #
 
     # NOTE: these lines are changed to use secrets.yml
     # from the examples (which use ENV vars instead)
