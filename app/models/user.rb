@@ -10,6 +10,4 @@ class User < ActiveRecord::Base
     self.filename  = photo_data.original_filename
     self.mime_type = photo_data.content_type
   end
-
-
 end
