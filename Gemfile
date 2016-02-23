@@ -39,6 +39,7 @@ gem 'delayed_job_active_record'
 
 group :production do
  gem 'pg'
+ gem 'daemons'
 end
 
 group :development, :test do
