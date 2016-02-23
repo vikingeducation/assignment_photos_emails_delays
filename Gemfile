@@ -8,6 +8,8 @@ gem 'rails', '4.2.5.1'
 
 gem 'delayed_job_active_record'
 
+gem 'hirb'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
