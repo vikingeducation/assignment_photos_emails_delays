@@ -83,7 +83,7 @@ Rails.application.configure do
       #   see the reading below for more details
       # NOTE: This must be the correct region for YOU
       #  :s3_host_name => "s3-us-west-1.amazonaws.com",
-      :url => "s3-us-east-1.amazonaws.com",
+      :s3_host_name => "s3-us-east-1.amazonaws.com",
       # might need to try this if you get an error:
       # :url => "s3-us-west-1.amazonaws.com"
 
@@ -94,7 +94,7 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
-  
+
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
