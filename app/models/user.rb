@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
   #after_create :send_welcome_email
-  
-  has_attached_file :avatar, 
+
+  has_attached_file :avatar,
             :source_file_options => {all: '-rotate 90'},
             :styles => { :medium => "300x300", :thumb => "100x100" }
 
@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
     self.profile_photo_mime_type = profile_photo.content_type
   end
 
-  def send_welcome_email
-    UserMailer.welcome(self).deliver!
+  def send_welcome_email(user_id)
+    UserMailer.welcome(User.find(user_id)).deliver!
   end
 
 end
