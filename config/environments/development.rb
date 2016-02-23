@@ -41,7 +41,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :letter_opener
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'http://frozen-castle-26117.herokuapp.com/' }
 
   config.paperclip_defaults = {
   :storage => :s3,
@@ -51,6 +51,19 @@ Rails.application.configure do
     :access_key_id => Rails.application.secrets.aws_access_key_id,
     :secret_access_key => Rails.application.secrets.aws_secret_access_key
   }
+
+config.action_mailer.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+  config.action_mailer.delivery_method ||= :smtp
+
+
 }
 
 end
