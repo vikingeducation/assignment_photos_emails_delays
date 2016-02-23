@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  after_create :send_welcome_email
+  #after_create :send_welcome_email
 
   has_attached_file :avatar,
             :source_file_options => {all: '-rotate 90'},

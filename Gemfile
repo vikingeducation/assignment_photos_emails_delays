@@ -41,6 +41,7 @@ gem 'figaro'
 group :production do
  gem 'pg'
  gem 'rails_12factor'
+ gem 'delayed_job_active_record'
 end
 
 group :development, :test do

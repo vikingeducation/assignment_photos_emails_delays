@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
-  default from: "abc@gmail.com"
+  default from: "heroku_user@gmail.com"
 
   def welcome(user)
     @user = user
-    mail(to: @user.email, subject: "Welcome!")
+    mail(to: @user.email, subject: "Welcome @user.username!")
   end
 
 end
