@@ -40,7 +40,7 @@ gem 'figaro'
 
 group :production do
  gem 'pg'
- 'rails_12factor'
+ gem 'rails_12factor'
 end
 
 group :development, :test do
