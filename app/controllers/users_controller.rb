@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find( params[:id] )
   end
 
   # GET /users/new
@@ -37,14 +36,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def serve
-    @photo = User.find(params[:user_id])
-    send_data( @photo.profile_photo, 
-        :type => @photo.mime_type,
-        :filename => @photo.filename,
-        :disposition => "inline")    
-  end
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -69,14 +60,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile_photo
+    @user = User.find(params[:user_id])
+    send_data(@user.profile_photo,
+              :disposition => "inline")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through
     def user_params
-      params.require(:user).permit(:username, :email, :photo_data, :avatar )
+      params.require(:user).permit(:username, :email, :avatar)
     end
 end

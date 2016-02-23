@@ -10,9 +10,15 @@
   <%= @user.email %>
 </p>
 
-<h1>Show Photo</h1>
 
-<%= image_tag  @user.avatar.url %>
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @user.avatar.url(:medium) %>
+<p>
+
+</p>
+  <%= link_to 'You Have 3 Seconds To Download', @user.avatar.expiring_url(3) %>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
