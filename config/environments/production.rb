@@ -108,7 +108,8 @@ Rails.application.configure do
   # Rails also needs to know where your app is
   #   located to properly configure sending of emails
   config.action_mailer.default_url_options = {
-    :host => 'https://hidden-ocean-34841.herokuapp.com/'
+    # :host => 'https://hidden-ocean-34841.herokuapp.com/'
+    host: 'https://peaceful-journey-98972.herokuapp.com/'
   }
- 
+
 end
