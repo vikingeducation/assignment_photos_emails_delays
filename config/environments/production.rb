@@ -93,22 +93,22 @@ Rails.application.configure do
     :secret_access_key => Rails.application.secrets.aws_secret_access_key
   }
 
-  config.action_mailer.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => Rails.application.secrets.sendgrid_username,
-    :password       => Rails.application.secrets.sendgrid_password,
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
-  }
+  # config.action_mailer.smtp_settings = {
+  #   :address        => 'smtp.sendgrid.net',
+  #   :port           => '587',
+  #   :authentication => :plain,
+  #   :user_name      => Rails.application.secrets.sendgrid_username,
+  #   :password       => Rails.application.secrets.sendgrid_password,
+  #   :domain         => 'heroku.com',
+  #   :enable_starttls_auto => true
+  # }
 
-  config.action_mailer.delivery_method ||= :smtp
+  # config.action_mailer.delivery_method ||= :smtp
 
-  # Rails also needs to know where your app is
-  #   located to properly configure sending of emails
-  config.action_mailer.default_url_options = {
-    :host => 'https://hidden-ocean-34841.herokuapp.com/'
-  }
+  # # Rails also needs to know where your app is
+  # #   located to properly configure sending of emails
+  # config.action_mailer.default_url_options = {
+  #   :host => 'https://hidden-ocean-34841.herokuapp.com/'
+  # }
 
 end
