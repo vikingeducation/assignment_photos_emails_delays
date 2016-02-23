@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
     user = User.find(id)
     UserMailer.welcome(user).deliver
   end
-
-
   #Not clear on what the ! is doing here.
 
 end
