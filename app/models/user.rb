@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  after_create :send_welcome_email(@user.id)
+  after_create :send_welcome_email
 
   has_attached_file :avatar,
             :source_file_options => {all: '-rotate 90'},
@@ -22,5 +22,8 @@ class User < ActiveRecord::Base
   def self.send_welcome_email(user_id)
     UserMailer.welcome(User.find(user_id)).deliver!
   end
-
+  
+  def send_welcome_email
+    User.send_welcome_email(self.id)
+  end   
 end
