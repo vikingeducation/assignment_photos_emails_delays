@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :serve_image]
 
   # GET /users
   # GET /users.json
@@ -11,10 +11,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     # debug
-    # basic_image(@user)
+    #basic_image(@user)
   end
 
-  def basic_image(user)
+  def serve_image
     send_data(user.profile_photo_data, type: user.profile_photo_mime_type, disposition: "inline")
   end
 
@@ -36,6 +36,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
+        @user.delay.send_welcome_message
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -78,7 +79,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(
         :username, 
         :email, 
-        :profile_photo,
+        :picture,
         :avatar,
         :delete_avatar)
     end
