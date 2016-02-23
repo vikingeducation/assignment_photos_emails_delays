@@ -51,8 +51,9 @@ Rails.application.configure do
     :access_key_id => Rails.application.secrets.aws_access_key_id,
     :secret_access_key => Rails.application.secrets.aws_secret_access_key
   }
+}
 
-config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
@@ -63,7 +64,5 @@ config.action_mailer.smtp_settings = {
   }
   config.action_mailer.delivery_method ||= :smtp
 
-
-}
 
 end
