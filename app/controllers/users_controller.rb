@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      User.send_welcome_email(@user.id)
+      User.delay.send_welcome_email(@user.id)
       flash[:success] = "successfully created"
       redirect_to @user
     else
