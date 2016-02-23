@@ -26,4 +26,6 @@ class User < ActiveRecord::Base
   def send_welcome_email
     User.send_welcome_email(self.id)
   end   
+
+  ###
 end
