@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
             :styles => { :medium => "300x300", :thumb => "100x100" }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   attr_accessor :delete_avatar
   before_validation { avatar.clear if delete_avatar == '1' }
@@ -17,8 +17,9 @@ class User < ActiveRecord::Base
     self.profile_photo_mime_type = profile_photo.content_type
   end
 
-  def send_welcome_email
-    UserMailer.welcome(self).deliver!
+  def self.send_welcome_email(id)
+    user = User.find(id)
+    UserMailer.welcome(user).deliver!
   end
 
 end

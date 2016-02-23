@@ -35,6 +35,7 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'hirb'
 gem 'figaro'
+gem 'delayed_job_active_record'
 
 group :production do
  gem 'pg'
