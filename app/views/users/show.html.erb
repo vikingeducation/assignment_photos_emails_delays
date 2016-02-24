@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @user.avatar.url(:medium) %>
+<p>
+
+</p>
+  <%= link_to 'You Have 3 Seconds To Download', @user.avatar.expiring_url(3) %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
