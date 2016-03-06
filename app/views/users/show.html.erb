@@ -11,7 +11,13 @@
 </p>
 
 <p>
+  <strong>Blob Image</strong><br>
   <%= image_tag user_blob_serve_path(user_id: @user), class: "blob" %>
+</p>
+
+<p>
+  <strong>File Image</strong><br>
+  <%= image_tag "/uploads/#{@user.filename}", class: "blob" %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
