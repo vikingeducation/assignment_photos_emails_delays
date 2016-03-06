@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  def blob_serve
+    @user = User.find(params[:user_id])
+    send_data(@user.blob_data, type: @user.blob_content_type, filename: @user.username, disposition: "inline")
+  end
+
   # GET /users
   # GET /users.json
   def index
@@ -69,6 +74,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :photo_blob)
     end
 end

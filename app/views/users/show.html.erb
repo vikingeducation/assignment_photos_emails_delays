@@ -10,5 +10,9 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <%= image_tag user_blob_serve_path(user_id: @user), class: "blob" %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
