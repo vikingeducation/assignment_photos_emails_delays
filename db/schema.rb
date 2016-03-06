@@ -11,18 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306210814) do
+ActiveRecord::Schema.define(version: 20160306214048) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.binary   "blob_data"
     t.string   "blob_content_type"
     t.string   "filename"
     t.string   "filepath"
     t.string   "file_content_type"
+    t.string   "paperclip_photo_file_name"
+    t.string   "paperclip_photo_content_type"
+    t.integer  "paperclip_photo_file_size"
+    t.datetime "paperclip_photo_updated_at"
   end
 
 end

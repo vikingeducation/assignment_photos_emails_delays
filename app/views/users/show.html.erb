@@ -20,5 +20,11 @@
   <%= image_tag "/uploads/#{@user.filename}", class: "blob" %>
 </p>
 
+
+<p>
+  <strong>Paperclip Image</strong><br>
+  <%= image_tag @user.paperclip_photo.url(:medium) %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

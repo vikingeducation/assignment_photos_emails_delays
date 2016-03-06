@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_attached_file :paperclip_photo, styles: { medium: "300x300#"}
+  validates_attachment_content_type :paperclip_photo, content_type: /\Aimage\/.*\Z/
+
   def photo_blob=(photo_blob)
     self.blob_data = photo_blob.read
     self.blob_content_type = photo_blob.content_type
