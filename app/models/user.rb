@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   has_attached_file :paperclip_photo, styles: { medium: "300x300#"}
   validates_attachment_content_type :paperclip_photo, content_type: /\Aimage\/.*\Z/
@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
 
   private
 
-  def send_welcome_email
-    UserMailer.welcome(self).deliver!
+  def self.send_welcome_email(id)
+    user = User.find(id)
+    UserMailer.welcome(user).deliver!
   end
 end
