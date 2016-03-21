@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  after_create :send_welcome_email
 
   has_attached_file :paperclip_photo, styles: { medium: "300x300#"}
   validates_attachment_content_type :paperclip_photo, content_type: /\Aimage\/.*\Z/
@@ -16,5 +17,11 @@ class User < ActiveRecord::Base
     File.open(self.filepath, 'wb') do |file|
       file.write(photo_file.read)
     end
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver!
   end
 end
