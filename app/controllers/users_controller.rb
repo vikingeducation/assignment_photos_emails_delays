@@ -7,6 +7,13 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def serve
+    @photo = User.find(params[:user_id])
+    send_data(@photo.data,  :type => @photo.mime_type,
+                            :filename => "#{@photo.filename}.jpg",
+                            :disposition => "inline")
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
