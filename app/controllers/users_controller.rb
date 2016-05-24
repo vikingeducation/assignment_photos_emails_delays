@@ -9,9 +9,7 @@ class UsersController < ApplicationController
 
   def serve
     @photo = User.find(params[:user_id])
-    send_data(@photo.data,  :type => @photo.mime_type,
-                            :filename => "#{@photo.filename}.jpg",
-                            :disposition => "inline")
+    send_file(@photo.profile_photo_location)
   end
 
   # GET /users/1
@@ -31,7 +29,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    upload
     @user = User.new(user_params)
+    @user.profile_photo_location = local_file_path(params[:user][:photo_data])
 
     respond_to do |format|
       if @user.save
@@ -69,9 +69,30 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def local_file_path(uploaded_io)
+      Rails.root.join( 'public',
+                       'uploads',
+                       uploaded_io.original_filename )
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    # grab the uploaded binary blob and read it into a newly created file on our filesystem
+    # NOTE that this should only be used carefully since our filesystem may not be available across different server instances!
+    def upload
+      uploaded_io = params[:user][:photo_data]
+      filepath = local_file_path(uploaded_io)
+
+      # Note that this will create a new file "filename" but it can NOT create a new folder, so you must already have a folder of that name "public/uploads" available.
+      # The wb indicated that the file is opened for writing in binary mode.
+      File.open(filepath, "wb") do |file|
+        # Note that we're using the 'read' method
+        file.write(uploaded_io.read)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
