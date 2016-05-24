@@ -14,5 +14,5 @@
 <%= link_to 'Back', users_path %>
 
 <div class="profile_photo">
-	<%= image_tag user_serve_path(@user) %>
+	<%= image_tag @user.avatar.expiring_url(time = 10, style_name = :thumb) %>
 </div>

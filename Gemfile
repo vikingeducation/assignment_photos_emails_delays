@@ -1,7 +1,15 @@
 source 'https://rubygems.org'
 
+# The official AWS SDK for Ruby. http://aws.amazon.com/sdkforruby
+gem 'aws-sdk'
+
 gem 'better_errors'
 gem 'binding_of_caller'
+
+# Simple Rails app configuration
+# We're using this fo help with environment variables
+# https://github.com/laserlemon/figaro
+gem 'figaro'
 
 # Easy file attachment management for ActiveRecord https://thoughtbot.com/open-source
 gem 'paperclip'

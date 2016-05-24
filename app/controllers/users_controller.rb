@@ -16,10 +16,13 @@ class UsersController < ApplicationController
                             :disposition => "inline")
   end
 =end
+=begin
+  # This is to serve the file from our local
   def serve
     @photo = User.find(params[:user_id])
     send_file(@photo.profile_photo_location)
   end
+=end
 
   # GET /users/1
   # GET /users/1.json
@@ -38,9 +41,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    upload
+    # Not too sure if this upload is necessary if we got an avatar with paperclip going.
+    # upload
     @user = User.new(user_params)
-    @user.profile_photo_location = local_file_path(params[:user][:photo_data])
+
+    # This only proceeds if we're using :photo_data
+    @user.profile_photo_location = local_file_path(params[:user][:photo_data]) if params[:user][:photo_data]
 
     respond_to do |format|
       if @user.save
@@ -106,6 +112,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :photo_data)
+      params.require(:user).permit(:username, :email, :avatar)
     end
 end
