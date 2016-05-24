@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'better_errors'
 gem 'binding_of_caller'
 
+# Easy file attachment management for ActiveRecord https://thoughtbot.com/open-source
+gem 'paperclip'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record

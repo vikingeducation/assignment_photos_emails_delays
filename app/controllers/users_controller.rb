@@ -7,6 +7,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+=begin
+  # This is to serve the file from our database
+  def serve
+    @photo = User.find(params[:user_id])
+    send_file(@photo.data,  :type => @photo.mime_type,
+                            :filename => "#{@photo.filename}.jpg",
+                            :disposition => "inline")
+  end
+=end
   def serve
     @photo = User.find(params[:user_id])
     send_file(@photo.profile_photo_location)
@@ -70,10 +79,10 @@ class UsersController < ApplicationController
 
   private
 
-    def local_file_path(uploaded_io)
+    def local_file_path(file_data)
       Rails.root.join( 'public',
                        'uploads',
-                       uploaded_io.original_filename )
+                       file_data.original_filename )
     end
 
     # Use callbacks to share common setup or constraints between actions.
