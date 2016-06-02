@@ -6,6 +6,9 @@ gem 'aws-sdk'
 gem 'better_errors'
 gem 'binding_of_caller'
 
+# Database based asynchronous priority queue system -- Extracted from Shopify http://groups.google.com/group/delayed_job
+gem 'delayed_job_active_record'
+
 # Simple Rails app configuration
 # We're using this fo help with environment variables
 # https://github.com/laserlemon/figaro
