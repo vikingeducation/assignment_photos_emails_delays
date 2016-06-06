@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        User.send_welcome_email(@user.id)
+        User.delay(run_at: 2.minutes.from_now).send_welcome_email(@user.id)
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
