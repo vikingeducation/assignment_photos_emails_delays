@@ -16,7 +16,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.default_url_options = { :host => 'https://protected-eyrie-53768.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'immense-mountain-59145.herokuapp.com/' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
