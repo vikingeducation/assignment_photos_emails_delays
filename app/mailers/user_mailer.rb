@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default :from => "prime_pork@hotmail.com"
+  default :from => "prime_pork3@hotmail.com"
 
   # This just builds the email, it doesn't send it.
   def welcome(user)
