@@ -8,6 +8,8 @@ gem 'aws-sdk'
 gem 'better_errors'
 gem 'binding_of_caller'
 
+gem 'daemons'
+
 # Database based asynchronous priority queue system -- Extracted from Shopify http://groups.google.com/group/delayed_job
 gem 'delayed_job_active_record'
 
