@@ -12,6 +12,20 @@ class UsersController < ApplicationController
   def show
   end
 
+  # Serve method for Database read
+
+  # def serve
+  #   @user = User.find(params[:user_id])
+  #   send_data( @user.data, type: @user.mime_type, 
+  #                          filename: "#{@user.filename}.jpg",
+  #                          disposition: "inline" )
+  # end
+
+  def serve
+    @user = User.find(params[:user_id])
+    send_file( @user.filename, type: 'image/jpg' )
+  end
+
   # GET /users/new
   def new
     @user = User.new
@@ -25,6 +39,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+
+
 
     respond_to do |format|
       if @user.save
@@ -69,6 +85,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :profile_photo)
     end
 end
