@@ -12,20 +12,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  # Serve method for Database read
-
-  # def serve
-  #   @user = User.find(params[:user_id])
-  #   send_data( @user.data, type: @user.mime_type, 
-  #                          filename: "#{@user.filename}.jpg",
-  #                          disposition: "inline" )
-  # end
-
-  def serve
-    @user = User.find(params[:user_id])
-    send_file( @user.filename, type: 'image/jpg' )
-  end
-
   # GET /users/new
   def new
     @user = User.new

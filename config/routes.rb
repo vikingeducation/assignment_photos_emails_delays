@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :users do
-    get "serve"
-  end
+  resources :users
 
   root 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.

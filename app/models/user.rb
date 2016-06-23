@@ -1,25 +1,9 @@
 class User < ActiveRecord::Base
 
-  attr_accessor :profile_photo
+  has_attached_file :profile_photo, styles: {:thumb => "150x150"}
 
-  # Save to Database
+  validates_attachment :profile_photo, presence: true,
+                                       content_type: { content_type: /\Aimage\/.*\Z/ },
+                                       size: { less_than: 2.megabytes }
 
-  # def profile_photo=(profile_photo)
-  #   self.data = profile_photo.read
-  #   self.filename = profile_photo.original_filename
-  #   self.mime_type = profile_photo.content_type
-  # end
-
-
-  def profile_photo=(profile_photo)
-    uploaded_io = profile_photo
-    filename = uploaded_io.original_filename
-    filepath = Rails.root.join( "public",
-                                "upload",
-                                filename )
-    File.open(filepath, 'wb') do |file|
-      file.write( uploaded_io.read )
-    end
-    self.filename = filepath
-  end
 end
