@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
                                        content_type: { content_type: /\Aimage\/.*\Z/ },
                                        size: { less_than: 2.megabytes }
 
+
+  def self.welcome(id)
+    @user = User.find(id)
+    UserMailer.welcome(@user).deliver
+  end
 end
