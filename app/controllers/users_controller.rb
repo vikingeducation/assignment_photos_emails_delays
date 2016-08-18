@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def serve
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     send_data(@user.data,  :type => @user.mime_type,
                             :filename => "#{@user.filename}.png",
                             :disposition => "inline")
@@ -33,10 +33,19 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params.except(:profile_photo))
-    if params[:profile_photo]
-      @user.data = params[:profile_photo].read
-      @user.data = params[:profile_photo].original_filename
-      @user.data = params[:profile_photo].content_type
+    # if user_params[:profile_photo]
+    #   @user.data = user_params[:profile_photo].read
+    #   @user.filename = user_params[:profile_photo].original_filename
+    #   @user.mime_type = user_params[:profile_photo].content_type
+    # end
+    uploaded_io = user_params[:profile_photo]
+    filename = uploaded_io.original_filename
+    filepath = Rails.root.join( 'public',
+      'uploads',
+      filename )
+
+    File.open(filepath, 'wb') do |file|
+      file.write(uploaded_io.read)
     end
 
 
