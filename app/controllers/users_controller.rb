@@ -71,12 +71,12 @@ class UsersController < ApplicationController
   end
 
   def serve_photo
-     @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
+    send_file("/public/uploads/#{@user.email}_profile_photo.jpg", disposition: "inline")
     # send_data(@user.profile_photo_data,                              
     #   :type => @user.profile_photo_mime_type,
     #   :filename => "#{@user.profile_photo_filename}",
     #   :disposition => "inline")
-    "/public/uploads/#{@user.email}_profile_photo.jpg"
   end
 
   private
@@ -95,9 +95,9 @@ class UsersController < ApplicationController
 
       uploaded_io = user_params[:photo_data]
       filename = uploaded_io.original_filename
-      filepath = Rails.root.join( 'public', 
-                                  'uploads', 
-                                  "#{user.email}_profile_photo.jpg" )
+      filepath = Rails.root.join( 'public',
+                                  'images', 
+                                  "#{user.username}_profile_photo.jpg" )
 
       # Note that this will create a new file "filename" but it
       #   can NOT create a new folder, so you must already

@@ -10,7 +10,7 @@
   <%= @user.email %>
 </p>
 
-<%= image_tag user_serve_photo_path(@user.id) %>
+<%=image_tag "/images/#{@user.username}_profile_photo.jpg" %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
