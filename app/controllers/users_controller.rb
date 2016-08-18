@@ -35,7 +35,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        upload
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -75,9 +74,8 @@ class UsersController < ApplicationController
 
     def upload
       uploaded_io = params[:user][:photo_data]
-      file_name = uploaded_io.original_filename
-      filepath = Rails.root.join( 'public', 
-                                  'uploads', 
+      filepath = Rails.root.join( 'public',
+                                  'uploads',
                                   @user.id.to_s + ".png" )
       File.open(filepath, 'wb') do |file|
         file.write(uploaded_io.read)
@@ -92,7 +90,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :avatar)
     end
 
 end
