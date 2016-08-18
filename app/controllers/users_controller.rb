@@ -24,13 +24,16 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params.except(:profile_photo)) do |t|
-      if user_params[:profile_photo]
-        t.data      = user_params[:profile_photo].read
-        t.filename  = user_params[:profile_photo].original_filename
-        t.mime_type = user_params[:profile_photo].content_type
-      end
-    end
+    @user = User.new(user_params)
+    #without paperclip
+    # upload
+    # @user = User.new(user_params.except(:profile_photo)) do |t|
+    #   if user_params[:profile_photo]
+    #     t.data      = user_params[:profile_photo].read
+    #     t.filename  = user_params[:profile_photo].original_filename
+    #     t.mime_type = user_params[:profile_photo].content_type
+    #   end
+    # end
 
     respond_to do |format|
       if @user.save
@@ -86,7 +89,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :profile_photo)
+      params.require(:user).permit(:username, :email, :avatar)
     end
 
     def upload
