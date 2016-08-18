@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label "Upload a photo" %><br>
-    <%= f.file_field :profile_photo %>
+    <%= f.file_field :profile_photo, :accept => 'image/png,image/gif,image/jpeg'%>
   </div>
   <div class="actions">
     <%= f.submit %>

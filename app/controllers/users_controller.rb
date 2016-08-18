@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -75,6 +77,7 @@ class UsersController < ApplicationController
                                 'uploads',
                                   filename)
     File.open(filepath, 'wb') do |file|
+      uploaded_op.rewind
       file.write(uploaded_op.read)
     end
   end
