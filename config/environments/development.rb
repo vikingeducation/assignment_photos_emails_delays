@@ -8,7 +8,6 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
 
-  # Don't forget to make S3 your storage option!
   :storage => :s3,
 
   :s3_credentials => {
@@ -16,7 +15,7 @@ Rails.application.configure do
     # put your host name here if needed
     #   see the reading below for more details
     # NOTE: This must be the correct region for YOU
-    :url => "dylanlynch.s3-website-us-east-1.amazonaws.com",
+    :host_name => "dylanlynch.s3-website-us-east-1.amazonaws.com",
 
     # NOTE: these lines are changed to use secrets.yml
     # from the examples (which use ENV vars instead)
