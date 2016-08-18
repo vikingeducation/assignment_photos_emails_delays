@@ -67,6 +67,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def serve
+    @photo = User.find(params[:user_id])
+    # send_data(@photo.data,  :type => @photo.mime_type, 
+    #                         :filename => "#{@photo.filename}.jpg",
+    #                         :disposition => "inline")
+    filepath = Rails.root.join( 'public', 
+                                  'uploads', 
+                                  @photo.filename )
+    send_file(filepath, type: @photo.mime_type)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -76,5 +87,16 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :email, :profile_photo)
+    end
+
+    def upload
+      uploaded_io = params[:user][:profile_photo]
+      filename = uploaded_io.original_filename
+      filepath = Rails.root.join( 'public', 
+                                  'uploads', 
+                                  filename )
+      File.open(filepath, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
     end
 end
