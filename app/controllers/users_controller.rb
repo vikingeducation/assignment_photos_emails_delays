@@ -21,16 +21,27 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def serve
+    @user = User.find(params[:user_id])
+    send_data(@user.profile_photo, type: @user.mimetype,
+                                   filename: "#{@user.filename}",
+                                   disposition: "inline")
+
+  end
+
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params.except(:profile_photo)) do |t|
-      if params[:user][:profile_photo]
-        t.profile_photo = params[:user][:profile_photo].read
-        t.filename = params[:user][:profile_photo].original_filename
-        t.mimetype = params[:user][:profile_photo].content_type
-      end
-    end
+    # @user = User.new(user_params.except(:profile_photo)) do |t|
+    #   if params[:user][:profile_photo]
+    #     t.profile_photo = params[:user][:profile_photo].read
+    #     t.filename = params[:user][:profile_photo].original_filename
+    #     t.mimetype = params[:user][:profile_photo].content_type
+    #   end
+    # end
+
+    @user = User.new(user_params.except(:profile_photo))
+    @user.filename = upload
 
     respond_to do |format|
       if @user.save
@@ -76,5 +87,17 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :email, :profile_photo)
+    end
+
+    def upload
+      uploaded_io = params[:user][:profile_photo]
+      filename = uploaded_io.original_filename
+      filepath = Rails.root.join('public', 'upload', filename)
+
+      File.open(filepath, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+
+      filepath.to_s
     end
 end
