@@ -23,10 +23,10 @@ class UsersController < ApplicationController
 
   def serve
     @user = User.find(params[:user_id])
-    send_data(@user.profile_photo, type: @user.mimetype,
-                                   filename: "#{@user.filename}",
-                                   disposition: "inline")
-
+    # send_data(@user.profile_photo, type: @user.mimetype,
+                                  #  filename: "#{@user.filename}",
+                                  #  disposition: "inline")
+    send_file("./public/upload/#{@user.filename}",filename: @user.filename, type: @user.mimetype, :disposition => "inline")
   end
 
   # POST /users
@@ -42,6 +42,7 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params.except(:profile_photo))
     @user.filename = upload
+    @user.mimetype = params[:user][:profile_photo].content_type
 
     respond_to do |format|
       if @user.save
@@ -98,6 +99,6 @@ class UsersController < ApplicationController
         file.write(uploaded_io.read)
       end
 
-      filepath.to_s
+      filename
     end
 end
