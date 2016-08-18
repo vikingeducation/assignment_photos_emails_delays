@@ -11,7 +11,8 @@
 </p>
 
 <img>
-  <%= image_tag user_serve_path(@user) %>
+  <%= image_tag @user.avatar.url(:medium) %>
+  <%= image_tag @user.avatar.url(:thumb) %>
 </img>
 
 

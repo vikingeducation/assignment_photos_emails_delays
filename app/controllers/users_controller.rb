@@ -33,20 +33,27 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params.except(:profile_photo))
+
+
+## saving into database
+# could be done in user model with a virtual attribute
     # if user_params[:profile_photo]
     #   @user.data = user_params[:profile_photo].read
     #   @user.filename = user_params[:profile_photo].original_filename
     #   @user.mime_type = user_params[:profile_photo].content_type
     # end
-    uploaded_io = user_params[:profile_photo]
-    filename = uploaded_io.original_filename
-    filepath = Rails.root.join( 'public',
-      'uploads',
-      filename )
 
-    File.open(filepath, 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
+
+## saving local
+    # uploaded_io = user_params[:profile_photo]
+    # filename = uploaded_io.original_filename
+    # filepath = Rails.root.join( 'public',
+    #   'uploads',
+    #   filename )
+    #
+    # File.open(filepath, 'wb') do |file|
+    #   file.write(uploaded_io.read)
+    # end
 
 
     respond_to do |format|
@@ -92,6 +99,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :profile_photo)
+      params.require(:user).permit(:username, :email, :avatar)
     end
 end
