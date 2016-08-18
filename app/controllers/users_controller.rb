@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params) do |t|
+    @user = User.new(user_params.except(:profile_photo)) do |t|
       if user_params[:profile_photo]
         t.data      = user_params[:profile_photo].read
         t.filename  = user_params[:profile_photo].original_filename
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'User was successfully created with Photo.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
