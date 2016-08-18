@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   def create    
     @user = User.new(user_params.except(:photo_data)) do |t|
       if user_params[:photo_data]
-        t.data      = user_params[:photo_data].read
-        t.filename  = user_params[:photo_data].original_filename
-        t.mime_type = user_params[:photo_data].content_type
+        t.profile_photo_data      = user_params[:photo_data].read
+        t.profile_photo_filename  = user_params[:photo_data].original_filename
+        t.profile_photo_mime_type = user_params[:photo_data].content_type
       end
     end
 
@@ -65,6 +65,13 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def serve_photo
+    @user = User.find(params[:user_id])
+    send_data(@user.profile_photo_data,                              :type => @user.profile_photo_mime_type,
+      :filename => "#{@user.profile_photo_filename}",
+      :disposition => "inline")
   end
 
   private
