@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818161737) do
+ActiveRecord::Schema.define(version: 20160818162005) do
 
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.binary   "profile_photo", limit: 10485760
+    t.string   "filename"
+    t.string   "mimetype"
   end
 
 end
