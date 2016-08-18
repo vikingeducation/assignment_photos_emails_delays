@@ -33,8 +33,6 @@ class UsersController < ApplicationController
     #   end
     # end
 
-    upload(@user)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -87,7 +85,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :photo_data)
+      params.require(:user).permit(:username, :email, :photo_data, :avatar)
     end
 
     def upload(user)
