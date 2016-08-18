@@ -1,5 +1,5 @@
 class Add < ActiveRecord::Migration
   def change
-    add_attachment :users, :profile_photo
+    add_attachment :users, :avatar
   end
 end
