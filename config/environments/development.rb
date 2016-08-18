@@ -12,14 +12,13 @@ Rails.application.configure do
 
     # Don't forget to make S3 your storage option!
     :storage => :s3,
-
     :s3_credentials => {
 
+     :s3_region => Rails.application.secrets.aws_region,
       # put your host name here if needed
       #   see the reading below for more details
       # NOTE: This must be the correct region for YOU
-      :s3_host_name => "s3-us-east-1.amazonaws.com",
-
+      :s3_host_name => "s3.amazonaws.com",
       # NOTE: these lines are changed to use secrets.yml
       # from the examples (which use ENV vars instead)
       :bucket => Rails.application.secrets.s3_bucket_name,

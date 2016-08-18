@@ -14,6 +14,7 @@ Rails.application.configure do
 
     # Don't forget to make S3 your storage option!
     :storage => :s3,
+    :s3_region => Rails.application.secrets.aws_region,
 
     :s3_credentials => {
 
