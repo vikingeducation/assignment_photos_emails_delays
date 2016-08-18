@@ -25,9 +25,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
+        upload
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -64,10 +64,19 @@ class UsersController < ApplicationController
   def serve
     @user = User.find(params[:user_id])
     @photo = @user.profile_photo
-    send_data(@photo.data, :type=>@photo.mime_type,
-                           :filename=>"#{@user.filename}.jpg",
-                           :disposition=>"inline")
+    send_file('public/uploads/test_photo.jpg', disposition: 'inline')
 
+  end
+
+  def upload
+    uploaded_op = params[:user][:profile_photo]
+    filename = uploaded_op.original_filename
+    filepath = Rails.root.join('public',
+                                'uploads',
+                                  filename)
+    File.open(filepath, 'wb') do |file|
+      file.write(uploaded_op.read)
+    end
   end
 
   private

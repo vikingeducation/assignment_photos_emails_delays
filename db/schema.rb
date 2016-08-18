@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818162816) do
+ActiveRecord::Schema.define(version: 20160818170102) do
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20160818162816) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.binary   "profile_photo", limit: 10485760
+    t.binary   "data",          limit: 10485760
+    t.binary   "filename",      limit: 10485760
+    t.binary   "mime_type",     limit: 10485760
   end
 
 end
