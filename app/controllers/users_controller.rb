@@ -84,4 +84,19 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :email, :photo_data)
     end
+
+    def upload
+      uploaded_io = params[:person][:photo_data]
+      filename = uploaded_io.original_filename
+      filepath = Rails.root.join( 'public', 
+                                  'uploads', 
+                                  filename )
+
+      # Note that this will create a new file "filename" but it
+      #   can NOT create a new folder, so you must already
+      #   have a folder of that name "public/uploads" available.
+      File.open(filepath, 'wb') do |file|
+        # Note that we're using the `read` method
+        file.write(uploaded_io.read)
+    end
 end
