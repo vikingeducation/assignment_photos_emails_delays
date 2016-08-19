@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-	default from: "hannahsquier@gmail.com.com", subject: "Welcome!"
+	default from: Rails.application.secrets.mailer_email, subject: "Welcome!"
 
 	def welcome(user)
 		@user = user
