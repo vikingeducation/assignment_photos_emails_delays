@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        User.delay.welcome_email(@user.id)
+        User.welcome_email(@user.id)
         format.html { redirect_to @user, notice: 'User was successfully created with Photo.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -73,11 +73,11 @@ class UsersController < ApplicationController
 
   def serve
     @photo = User.find(params[:user_id])
-    # send_data(@photo.data,  :type => @photo.mime_type, 
+    # send_data(@photo.data,  :type => @photo.mime_type,
     #                         :filename => "#{@photo.filename}.jpg",
     #                         :disposition => "inline")
-    filepath = Rails.root.join( 'public', 
-                                  'uploads', 
+    filepath = Rails.root.join( 'public',
+                                  'uploads',
                                   @photo.filename )
     send_file(filepath, type: @photo.mime_type)
   end
@@ -96,8 +96,8 @@ class UsersController < ApplicationController
     def upload
       uploaded_io = params[:user][:profile_photo]
       filename = uploaded_io.original_filename
-      filepath = Rails.root.join( 'public', 
-                                  'uploads', 
+      filepath = Rails.root.join( 'public',
+                                  'uploads',
                                   filename )
       File.open(filepath, 'wb') do |file|
         file.write(uploaded_io.read)
