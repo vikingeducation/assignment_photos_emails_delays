@@ -33,6 +33,8 @@ class UsersController < ApplicationController
     #   end
     # end
 
+    @user.delay(queue: "newsletter", priority: 28, run_at: 2.seconds.from_now).send_welcome_email
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
