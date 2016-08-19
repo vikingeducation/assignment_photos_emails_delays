@@ -1,5 +1,24 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.paperclip_defaults = {
+
+  # Don't forget to make S3 your storage option!
+  :storage => :s3,
+
+  :s3_credentials => {
+
+    # put your host name here if needed
+    #   see the reading below for more details
+    # NOTE: This must be the correct region for YOU
+    :s3_host_name => "s3-us-west-2.amazonaws.com",
+    :s3_region => "us-west-2",
+
+    # NOTE: these lines are changed to use secrets.yml
+    # from the examples (which use ENV vars instead)
+    :bucket => Rails.application.secrets.s3_bucket_name,
+    :access_key_id => Rails.application.secrets.aws_access_key_id,
+    :secret_access_key => Rails.application.secrets.aws_secret_access_key
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -27,23 +46,6 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
 
-  # Don't forget to make S3 your storage option!
-  :storage => :s3,
-
-  :s3_credentials => {
-
-    # put your host name here if needed
-    #   see the reading below for more details
-    # NOTE: This must be the correct region for YOU
-    # :s3_host_name => "s3-us-east-1.amazonaws.com",
-    :s3_region => "us-east-1",
-    # NOTE: these lines are changed to use secrets.yml
-    # from the examples (which use ENV vars instead)
-    :bucket => Rails.application.secrets.s3_bucket_name,
-    :access_key_id => Rails.application.secrets.aws_access_key_id,
-    :secret_access_key => Rails.application.secrets.aws_secret_access_key
-    }
-  }
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
