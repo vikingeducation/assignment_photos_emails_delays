@@ -9,18 +9,27 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+  config.action_mailer.delivery_method = :letter_opener
 
   config.paperclip_defaults = {
 
     # Don't forget to make S3 your storage option!
     :storage => :s3,
+    
+
 
     :s3_credentials => {
+
+     :s3_region => 'us-east-1',
+
 
       # put your host name here if needed
       #   see the reading below for more details
       # NOTE: This must be the correct region for YOU
-      :s3_host_name => "s3-us-east-1.amazonaws.com",
+      :s3_host_name => "s3-us-west-1.amazonaws.com",
+      # put your host name here if needed
+      #   see the reading below for more details
+      # NOTE: This must be the correct region for YOU
 
       # NOTE: these lines are changed to use secrets.yml
       # from the examples (which use ENV vars instead)
