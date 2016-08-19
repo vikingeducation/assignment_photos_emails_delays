@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        User.delay.welcome_email(@user.id)
         format.html { redirect_to @user, notice: 'User was successfully created with Photo.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -102,4 +103,5 @@ class UsersController < ApplicationController
         file.write(uploaded_io.read)
       end
     end
+
 end
