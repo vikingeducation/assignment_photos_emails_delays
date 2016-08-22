@@ -8,7 +8,7 @@ class User < ApplicationRecord
       UserMailer.welcome(user).deliver
     end
 
-    handle_asynchronously :welcome_email, run_at: Proc.new { 5.seconds.from_now }
+    # handle_asynchronously :welcome_email, run_at: Proc.new { 5.seconds.from_now }
 
   end
 end
