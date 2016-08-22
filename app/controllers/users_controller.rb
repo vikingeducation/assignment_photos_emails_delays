@@ -34,7 +34,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params.except(:profile_photo))
 
-
 ## saving into database
 # could be done in user model with a virtual attribute
     # if user_params[:profile_photo]
@@ -42,8 +41,6 @@ class UsersController < ApplicationController
     #   @user.filename = user_params[:profile_photo].original_filename
     #   @user.mime_type = user_params[:profile_photo].content_type
     # end
-
-
 ## saving local
     # uploaded_io = user_params[:profile_photo]
     # filename = uploaded_io.original_filename
@@ -55,14 +52,13 @@ class UsersController < ApplicationController
     #   file.write(uploaded_io.read)
     # end
 
-
     respond_to do |format|
       if @user.save
-       @user.send_welcome_email(@user.id)
+       @user.send_welcome_email
        # @user.delay.send_welcome_email
 
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+      format.html { redirect_to @user, notice: 'User was successfully created.' }
+      format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
