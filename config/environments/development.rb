@@ -49,11 +49,11 @@ Rails.application.configure do
       # put your host name here if needed
       #   see the reading below for more details
       # NOTE: This must be the correct region for YOU
-      :s3_host_name => "s3.amazonaws.com",
+      :s3_host_name => "s3-us-west-2.amazonaws.com",
 
       # NOTE: these lines are changed to use secrets.yml
       # from the examples (which use ENV vars instead)
-      :s3_region => "us-east-1",
+      :s3_region => "us-west-2",
       :bucket => Rails.application.secrets.aws_bucket,
       :access_key_id => Rails.application.secrets.aws_id,
       :secret_access_key => Rails.application.secrets.aws_secret_key
