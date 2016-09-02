@@ -1,4 +1,4 @@
-assignment_photos
+Paperclip and AWS Photo Assignment
 =================
 
 
