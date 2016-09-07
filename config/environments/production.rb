@@ -1,6 +1,21 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  Paperclip.options[:command_path] = "/usr/bin/convert"
+  config.paperclip_defaults = {
 
+  # Don't forget to make S3 your storage option!
+  :storage => :s3,
+
+  :s3_credentials => {
+
+    # :s3_host_name => "s3-us-west-2.amazonaws.com",
+    :s3_region => Rails.application.secrets.aws_region,
+
+    :bucket => Rails.application.secrets.s3_bucket_name,
+    :access_key_id => Rails.application.secrets.aws_access_key_id,
+    :secret_access_key => Rails.application.secrets.aws_secret_access_key
+  }
+  }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
