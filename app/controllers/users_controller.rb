@@ -71,4 +71,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :email)
     end
+
+    def send_welcome_email
+      UserMailer.welcome(self).deliver!
+    end
 end
