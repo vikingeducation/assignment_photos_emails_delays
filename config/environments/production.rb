@@ -7,11 +7,11 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :s3_region => Rails.application.secrets.s3_region,
-      :s3_host_name => Rails.application.secrets.s3_host_name,
-      :bucket => Rails.application.secrets.bucket,
-      :access_key_id => Rails.application.secrets.access_key_id,
-      :secret_access_key => Rails.application.secrets.secret_access_key
+      :s3_region => ENV['S3_REGION'],
+      :s3_host_name => ENV['S3_HOST_NAME'],
+      :bucket => ENV['BUCKET'],
+      :access_key_id => ENV['ACCESS_KEY_ID'],
+      :secret_access_key => ENV['SECRET_ACCESS_KEY']
     }
   }
 
