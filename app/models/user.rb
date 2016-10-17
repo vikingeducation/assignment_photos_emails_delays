@@ -16,13 +16,33 @@ class User < ApplicationRecord
 
   after_create :queue_welcome_email
 
+
+
+
+  private
   def queue_welcome_email
-    User.delay.send_welcome_email(id)
+    # # 1. Use the delayed job gem directly
+    # User.delay.send_welcome_email(id)
+
+
+    # # 2. Use ActiveJob to send the email
+    # # in an ActiveJob class
+    # UserSendWelcomeEmailJob.perform_later(id)
+
+
+    # # 3. Emails can be delayed with one line
+    # # because ActionMailer is integrated with
+    # # ActiveJob in Rails 5
+    UserMailer.welcome(self).deliver_later
   end
 
+
   def self.send_welcome_email(user_id)
+    # 1. This method gets called when
+    # using the delayed job gem
+    # directly above
     user = User.find(user_id)
-    UserMailer.welcome(user).deliver!
+    UserMailer.welcome(user).deliver_now
   end
 end
 

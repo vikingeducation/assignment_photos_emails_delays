@@ -2,6 +2,7 @@ class UserMailer < ApplicationMailer
   default :from => 'wink@you.me'
 
   def welcome(user)
+    puts 'Sending welcome email'
     @user = user
     mail(
       :to => @user.email,
