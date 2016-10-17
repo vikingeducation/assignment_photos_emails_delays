@@ -6,6 +6,7 @@ Rails.application.configure do
   # ----------------------------------------
   config.paperclip_defaults = {
     :storage => :s3,
+    :s3_region => Rails.application.secrets.s3_region,
     :s3_credentials => {
       :s3_host_name => Rails.application.secrets.s3_host_name,
       :bucket => Rails.application.secrets.bucket,
