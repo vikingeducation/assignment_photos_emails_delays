@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby ENV['RBENV_VERSION'] || '2.2.2'
 
 gem 'letter_opener', :group => :development
 gem 'delayed_job_active_record'
