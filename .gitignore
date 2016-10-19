@@ -21,3 +21,4 @@
 .byebug_history
 /public/uploads/
 /public/system/
+config/application.yml

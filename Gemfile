@@ -15,12 +15,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
 gem 'paperclip'
+gem 'figaro'
+gem 'aws-sdk'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'hirb'
-  gem 'byebug', platform: :mri
   gem "better_errors"
   gem "binding_of_caller"
   gem 'pry-byebug'
