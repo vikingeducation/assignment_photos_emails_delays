@@ -26,6 +26,8 @@ group :development, :test do
   gem 'pry-byebug'
 end
 
+gem "letter_opener", :group => :development
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
