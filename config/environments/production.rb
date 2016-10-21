@@ -20,6 +20,9 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
+
+  Rails.application.routes.default_url_options[:host] = 'sheltered-peak-84152.herokuapp.com'
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
