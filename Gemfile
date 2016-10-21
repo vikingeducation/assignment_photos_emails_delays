@@ -27,6 +27,7 @@ group :development, :test do
 end
 
 gem "letter_opener", :group => :development
+gem 'delayed_job_active_record'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
