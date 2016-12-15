@@ -6,4 +6,12 @@ class User < ApplicationRecord
     self.filename = photo_data.original_filename
     self.mime_type = photo_data.content_type
   end
+
+  has_attached_file
+
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+
+
+
 end
