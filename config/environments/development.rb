@@ -8,7 +8,7 @@ Rails.application.configure do
   config.paperclip_defaults = { 
     storage: :s3,
     s3_credentials: { 
-      # s3_host_name: ENV['AWS_HOST_NAME'],
+      s3_host_name: ENV['AWS_HOST_NAME'],
       bucket: ENV['PHOTO_ASSIGNMENT_BUCKET'],
       access_key_id: ENV['AWS_ACCESS_KEY'],
       secret_access_key: ENV['AWS_SECRET_KEY'],
