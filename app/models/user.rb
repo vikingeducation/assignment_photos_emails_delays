@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+  # virtual attribute on User for saving files to DB
   def photo_data=(photo_data)
     self.data = photo_data.read
     self.filename = photo_data.original_filename

@@ -24,7 +24,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    # saving to db
+    # @user = User.new(user_params)
+
+    # saving to filesystem
+    @user = User.new(user_params.except(:photo_data))
+
+    upload if user_params[:photo_data]
 
     respond_to do |format|
       if @user.save
@@ -61,16 +67,33 @@ class UsersController < ApplicationController
     end
   end
 
-
   def serve
-    @user = User.find(params[:user_id])
+    # serving from DB
+    # @user = User.find(params[:user_id])
+    #
+    # send_data(@user.data, type: @user.mime_type,
+    #                    filename: "#{@user.filename}.jpg",
+    #                 disposition: "inline")
 
-    send_data(@user.data, type: @user.mime_type,
-                       filename: "#{@user.filename}.jpg",
-                    disposition: "inline")
+    # serving from filesystem
+    # Rails.root.join('app', 'assets', 'images', 'logo.png')
+    # require File.expand_path('../public/uploads', __FILE__)
   end
 
+  # save file to filesystem
+  def upload
+    uploaded_io = params[:user][:photo_data]
+    filename = uploaded_io.original_filename
+    filepath = Rails.root.join( 'public',
+                                'uploads',
+                                filename )
 
+    File.open(filepath, 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+
+    @user.filename = "uploads/#{filename}"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -82,8 +105,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :photo_data)
     end
-
-
-
 
 end

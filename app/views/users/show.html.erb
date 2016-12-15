@@ -10,8 +10,13 @@
   <%= @user.email %>
 </p>
 
-<%= image_tag user_serve_path(@user) %>
+<!-- display from db -->
+<%#= image_tag user_serve_path(@user) %>
 
+<!-- display from filesystem -->
+<img src="/<%= @user.filename %>" alt="">
+<!-- image_tag does not use public folder -->
+<%#= image_tag @user.filename %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
