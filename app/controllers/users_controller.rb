@@ -24,8 +24,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
+    @user = User.new(user_params.except(:photo))
+    save_photo(params[:user][:photo])
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -65,6 +65,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     p "Hit serve method"
     send_data(@user.photo_data, type: @user.photo_mimetype, filename: "#{@user.photo_filename}", disposition: "inline")
+  end
+
+  def save_photo(uploaded_io)
+    # uploaded_io = params[:person][:photo]
+    filename = uploaded_io.original_filename
+    filepath = Rails.root.join( 'public',
+                                'uploaded_files',
+                                filename )
+    File.open(filepath, 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    @user.photo_file_path = filepath
   end
 
   private
