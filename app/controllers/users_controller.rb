@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :serve]
 
   # GET /users
   # GET /users.json
@@ -61,6 +61,15 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def serve
+    send_data(@user.data, type: @user.mime_type,
+                       filename: "#{@user.filename}.jpg",
+                    disposition: "inline")
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -69,6 +78,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :photo_data)
     end
+
+
+
+
 end
