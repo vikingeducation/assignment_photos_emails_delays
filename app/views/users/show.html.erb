@@ -14,9 +14,9 @@
 <%#= image_tag user_serve_path(@user) %>
 
 <!-- display from filesystem -->
-<img src="/<%= @user.filename %>" alt="">
+<!-- <img src="/<%= @user.filename %>" alt=""> -->
 
-
+<%= image_tag @user.avatar.url(:thumb) %>
 
 
 <!-- image_tag does not use public folder -->

@@ -25,12 +25,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     # saving to db
-    # @user = User.new(user_params)
+    @user = User.new(user_params)
 
     # saving to filesystem
-    @user = User.new(user_params.except(:photo_data))
+    #@user = User.new(user_params.except(:photo_data))
 
-    upload if user_params[:photo_data]
+    #upload if user_params[:photo_data]
 
     respond_to do |format|
       if @user.save

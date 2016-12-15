@@ -7,7 +7,8 @@ class User < ApplicationRecord
     self.mime_type = photo_data.content_type
   end
 
-  has_attached_file
+  has_attached_file :avatar, styles: {
+    thumb: "100x100", small: "200x200" }
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
