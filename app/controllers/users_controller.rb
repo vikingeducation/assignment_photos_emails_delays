@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :serve]
 
   # GET /users
   # GET /users.json
@@ -24,10 +24,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:photo_data))
 
     respond_to do |format|
       if @user.save
+        upload
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -61,6 +62,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def serve
+    # send_data(@user.data, :type => @user.mime_type, :filename => "#{@user.filename}.jpg", :disposition => "inline")
+    send_file "#{Rails.root}/public/uploads/user_128263.jpg", type: 'image/jpeg', disposition: 'inline'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -69,6 +75,25 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      # params.require(:user).permit(:username, :email, :photo_data)
+      params.require(:user).permit(:username, :email, :photo_data)
     end
+
+    def upload
+      uploaded_io = params[:user][:photo_data]
+      filename = uploaded_io.original_filename
+      filepath = Rails.root.join( 'public',
+                                  'uploads',
+                                  filename )
+
+      # Note that this will create a new file "filename" but it
+      #   can NOT create a new folder, so you must already
+      #   have a folder of that name "public/uploads" available.
+      File.open(filepath, 'wb') do |file|
+        # Note that we're using the `read` method
+        file.write(uploaded_io.read)
+      end
+    end
+
+
 end
