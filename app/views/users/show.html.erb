@@ -16,8 +16,7 @@
 <!-- display from filesystem -->
 <!-- <img src="/<%= @user.filename %>" alt=""> -->
 
-<%= image_tag @user.avatar.url(:thumb) %>
-
+<%= image_tag @user.avatar.expiring_url(10, :thumb) %>
 
 <!-- image_tag does not use public folder -->
 <%#= image_tag @user.filename %>

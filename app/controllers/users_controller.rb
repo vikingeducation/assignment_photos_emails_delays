@@ -92,7 +92,8 @@ class UsersController < ApplicationController
       file.write(uploaded_io.read)
     end
 
-    @user.filename = "uploads/#{filename}"
+    # for local filesystem
+    # @user.filename = "uploads/#{filename}"
   end
 
   private

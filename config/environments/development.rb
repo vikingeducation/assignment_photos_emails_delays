@@ -4,19 +4,19 @@ Rails.application.configure do
   Paperclip.options[:command_path] = "/usr/local/bin"
 
   config.paperclip_defaults = {
-    :storage => :s3,
+    storage: :s3,
 
-    :s3_credentials => {
+    s3_credentials: {
 
-      :s3_host_name => "us-west-2.amazonaws.com",
-      :s3_region => "us-west-2",
+      s3_host_name: "#{ENV["AWS_REGION"]}.amazonaws.com",
+      s3_region: "#{ENV["AWS_REGION"]}",
 
       # NOTE: these lines are changed to use secrets.yml
       # from the examples (which use ENV vars instead)
-      :bucket => Rails.application.secrets.s3_bucket_name,
-      :access_key_id => Rails.application.secrets.aws_access_key_id,
-      :secret_access_key => Rails.application.secrets.aws_secret_access_key,
-      :force_path_style => true
+      bucket: Rails.application.secrets.s3_bucket_name,
+      access_key_id: Rails.application.secrets.aws_access_key_id,
+      secret_access_key: Rails.application.secrets.aws_secret_access_key,
+      force_path_style: true
     }
   }
 
