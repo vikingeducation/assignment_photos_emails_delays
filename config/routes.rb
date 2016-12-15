@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #photo_serve_path, /photos/1/serve
+  resources :photos, only: [:show, :new, :create] do
+    get "serve"
+  end
+
+
 end
