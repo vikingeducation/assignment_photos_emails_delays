@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :serve]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -63,6 +63,8 @@ class UsersController < ApplicationController
 
 
   def serve
+    @user = User.find(params[:user_id])
+
     send_data(@user.data, type: @user.mime_type,
                        filename: "#{@user.filename}.jpg",
                     disposition: "inline")
