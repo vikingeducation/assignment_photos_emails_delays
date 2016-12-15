@@ -12,7 +12,9 @@
 
 <p>
   <strong>Profile Photo:</strong>
-  <%= image_tag photo_serve_path(@user) %>
+  <%= image_tag @user.avatar.expiring_url(5) %>
+  <%= image_tag @user.avatar.expiring_url(5,:medium) %>
+  <%= image_tag @user.avatar.expiring_url(5,:thumb) %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
