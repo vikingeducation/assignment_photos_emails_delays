@@ -12,11 +12,23 @@ class User < ApplicationRecord
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  after_create :send_welcome
+  # callback to send email after user created
+  # after_create :send_welcome
+
+  # callback to QUEUE send email after user created
+  after_create :queue_welcome_email
 
   private
-    def send_welcome
-      UserMailer.welcome(self).deliver
+    # method to send welcome email (immediately)
+    # def send_welcome
+    #   UserMailer.welcome(self).deliver
+    # end
+
+    # method to queue a welcome email (delayed)
+    # pass in an id in case the state of the user changes
+    # delay automatically delivers?
+    def queue_welcome_email
+      UserMailer.delay(run_at: 5.seconds.from_now).welcome(self.id)
     end
 
 end

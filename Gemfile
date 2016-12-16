@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
+gem 'delayed_job_active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
