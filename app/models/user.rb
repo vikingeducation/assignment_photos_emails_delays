@@ -3,10 +3,11 @@ class User < ApplicationRecord
   has_attached_file :photo
   validates_attachment_content_type :photo, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+  after_create :queue_welcome_email
+
   private
-    def self.send_welcome_email(id)
-      user = User.find(id)
-      UserMailer.welcome(user).deliver
+    def queue_welcome_email
+      UserMailer.welcome(self).deliver_later
     end
 
   # def photo=(photo)
