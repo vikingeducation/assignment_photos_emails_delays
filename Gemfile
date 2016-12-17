@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'delayed_job_active_record'
 
 
 group :development, :test do
@@ -29,6 +30,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'jazz_fingers'
+  gem "letter_opener"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
