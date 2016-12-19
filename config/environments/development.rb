@@ -98,8 +98,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-end
-se time but is perfect for development
+
   # since you don't have to restart the web server when you make code changes.
 
   config.paperclip_defaults = {
