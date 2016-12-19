@@ -1,8 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.paperclip_defaults = { 
+  config.paperclip_defaults = {
     storage: :s3,
-    s3_credentials: { 
+    s3_credentials: {
       s3_host_name: ENV['AWS_HOST_NAME'],
       bucket: ENV['PHOTO_ASSIGNMENT_BUCKET'],
       access_key_id: ENV['AWS_ACCESS_KEY'],
@@ -11,6 +11,23 @@ Rails.application.configure do
   }
   # Code is not reloaded between requests.
   config.cache_classes = true
+
+  config.action_mailer.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+  config.action_mailer.delivery_method ||= :smtp
+
+  # Rails also needs to know where your app is
+  #   located to properly configure sending of emails
+  config.action_mailer.default_url_options = {
+    :host => 'www.thawing-ocean-68316.herokuapp.com',
+  }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
