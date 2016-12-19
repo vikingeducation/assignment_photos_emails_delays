@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def self.send_welcome_email(id)
     user = User.find_by_id(id)
-    WelcomeMailer.welcome(user).deliver #_later
+    WelcomeMailer.welcome(user).deliver_later
   end
   # handle_asynchronously :send_welcome_email
 end
