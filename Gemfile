@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'sqlite3'
+gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -15,6 +15,9 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'delayed_job_active_record'
 gem 'daemons'
 
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
