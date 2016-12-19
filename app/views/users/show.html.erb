@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<!-- display from db -->
+<%#= image_tag user_serve_path(@user) %>
+
+<!-- display from filesystem -->
+<!-- <img src="/<%= @user.filename %>" alt=""> -->
+
+<%= image_tag @user.avatar.expiring_url(10, :thumb) %>
+
+<!-- image_tag does not use public folder -->
+<%#= image_tag @user.filename %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
