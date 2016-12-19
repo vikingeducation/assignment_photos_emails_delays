@@ -17,5 +17,5 @@ class User < ApplicationRecord
     user = User.find_by_id(id)
     WelcomeMailer.welcome(user).deliver_later
   end
-  # handle_asynchronously :send_welcome_email
+  # handle_asynchronously :send_welcome_email # not with _later & no delay when called from controller
 end
