@@ -13,6 +13,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'delayed_job_active_record'
+gem 'coffee-script-source', '= 1.11.1'
 
 
 group :development, :test do
