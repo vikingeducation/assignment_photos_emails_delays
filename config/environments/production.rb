@@ -1,8 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.paperclip_defaults = { 
+  config.paperclip_defaults = {
     storage: :s3,
-    s3_credentials: { 
+    s3_credentials: {
       s3_host_name: ENV['AWS_HOST_NAME'],
       bucket: ENV['PHOTO_ASSIGNMENT_BUCKET'],
       access_key_id: ENV['AWS_ACCESS_KEY'],
@@ -12,6 +12,7 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  config.action_mailer.default_url_options = { :host => 'https://photo-assignment.herokuapp.com' }
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
