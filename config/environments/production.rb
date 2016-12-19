@@ -1,8 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.paperclip_defaults = { 
+  config.paperclip_defaults = {
     storage: :s3,
-    s3_credentials: { 
+    s3_region: "us-west-2",
+    s3_credentials: {
       s3_host_name: ENV['AWS_HOST_NAME'],
       bucket: ENV['PHOTO_ASSIGNMENT_BUCKET'],
       access_key_id: ENV['AWS_ACCESS_KEY'],

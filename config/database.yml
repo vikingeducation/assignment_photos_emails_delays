@@ -27,3 +27,4 @@ production:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: assignment_photos_emails_delays_production
   username: assignment_photos_emails_delays
+  password: <%= ENV["ASSIGNMENT_PHOTOS_EMAILS_DELAYS_PASSWORD"] %>
