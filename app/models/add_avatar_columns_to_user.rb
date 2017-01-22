@@ -1,0 +1,2 @@
+class AddAvatarColumnsToUser < ApplicationRecord
+end
