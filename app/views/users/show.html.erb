@@ -10,5 +10,10 @@
   <%= @user.email %>
 </p>
 
+<div>
+  <strong>Photo:</strong>
+  <%= image_tag user_serve_path(@user) %>
+</div>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

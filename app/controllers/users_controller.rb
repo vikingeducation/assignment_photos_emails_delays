@@ -21,10 +21,34 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def serve
+    @user = User.find(params[:user_id])
+    send_file "#{@user.filename}", type: 'image/jpeg', disposition: 'inline'
+    # send_data(@user.data,  :type => @user.mime_type,
+    #                        :filename => "#{@user.filename}.jpg",
+    #                        :disposition => 'inline' )
+  end
+
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:photo_data)) do |t|
+        uploaded_io = user_params[:photo_data]
+        filename = uploaded_io.original_filename
+        filepath = Rails.root.join( 'public',
+                                    'uploads',
+                                    filename )
+        t.filename  = filepath
+        t.mime_type = uploaded_io.content_type
+        File.open(filepath, 'wb') do |file|
+          file.write(uploaded_io.read)
+        end
+      # if user_params[:photo_data]
+      #   t.data      = user_params[:photo_data].read
+      #   t.filename  = user_params[:photo_data].original_filename
+      #   t.mime_type = user_params[:photo_data].content_type
+      # end
+    end
 
     respond_to do |format|
       if @user.save
@@ -69,6 +93,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :photo_data)
     end
 end
