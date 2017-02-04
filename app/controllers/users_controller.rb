@@ -23,7 +23,9 @@ class UsersController < ApplicationController
 
   def serve
     @user = User.find(params[:user_id])
+    # serving photo from local filesystem
     send_file "#{@user.filename}", type: 'image/jpeg', disposition: 'inline'
+    # serving photo from controller
     # send_data(@user.data,  :type => @user.mime_type,
     #                        :filename => "#{@user.filename}.jpg",
     #                        :disposition => 'inline' )
@@ -33,6 +35,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params.except(:photo_data)) do |t|
+        # writing file to local filesystem
         uploaded_io = user_params[:photo_data]
         filename = uploaded_io.original_filename
         filepath = Rails.root.join( 'public',
@@ -43,6 +46,7 @@ class UsersController < ApplicationController
         File.open(filepath, 'wb') do |file|
           file.write(uploaded_io.read)
         end
+      # writing file to db column from controller
       # if user_params[:photo_data]
       #   t.data      = user_params[:photo_data].read
       #   t.filename  = user_params[:photo_data].original_filename
