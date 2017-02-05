@@ -12,7 +12,7 @@
 
 <div>
   <strong>Photo:</strong>
-  <%= image_tag user_serve_path(@user) %>
+  <%= image_tag @user.profile_picture.url(:medium) %>
 </div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
