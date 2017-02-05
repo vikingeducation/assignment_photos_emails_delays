@@ -53,4 +53,20 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   Paperclip.options[:command_path] = "/usr/local/bin"
+
+  config.paperclip_defaults = {
+  :storage => :s3,
+
+
+  :s3_credentials => {
+    :s3_host_name => "s3.amazonaws.com",
+    :s3_region => "us-east-1",
+
+    # NOTE: these lines are changed to use secrets.yml
+    # from the examples (which use ENV vars instead)
+    :bucket => Rails.application.secrets.s3_bucket_name,    
+    :access_key_id => Rails.application.secrets.aws_access_key_id,
+    :secret_access_key => Rails.application.secrets.aws_secret_access_key
+    }
+  }
 end

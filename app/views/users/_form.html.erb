@@ -26,6 +26,11 @@
     <%= f.file_field :profile_picture %>
   </div>
 
+  <div class="field">
+    <%= f.label :delete_profile_picture, 'Remove' %>
+    <%= f.check_box :delete_profile_picture %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
