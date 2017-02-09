@@ -9,4 +9,10 @@ class User < ApplicationRecord
   attr_accessor :delete_profile_picture
   before_validation { profile_picture.clear if 
                                     delete_profile_picture == '1' }
+
+
+  def self.send_welcome_email(user_id)
+    user = User.find(user_id)
+    UserMailer.welcome(user).deliver!
+  end
 end
