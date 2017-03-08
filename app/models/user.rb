@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  after_create :send_welcome_email
 
   has_attached_file :avatar
 
@@ -9,11 +8,9 @@ class User < ApplicationRecord
 
   before_validation { avatar.clear if delete_avatar == '1' }
 
-  private
-
-    def send_welcome_email
-      #Note that the ! method will roll back the save transaction on failure
-      UserMailer.welcome(self).deliver!
-    end
+  def self.send_welcome_email(id)
+    user = User.find(id)
+    UserMailer.welcome(user).deliver!
+  end
 
 end
