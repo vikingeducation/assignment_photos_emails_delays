@@ -44,11 +44,10 @@ end
 
 gem 'binding_of_caller'
 
+gem 'aws-sdk'
 gem 'paperclip'
 
 gem 'figaro'
-
-gem 'aws-sdk'
 
 gem 'delayed_job_active_record'
 
