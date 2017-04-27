@@ -21,6 +21,11 @@
     <%= f.text_field :email %>
   </div>
 
+<div class="field">
+  <%= f.label :photo_data %>
+  <%= f.file_field :photo_data, accept: 'image/png,image/gif,image/jpeg' %>
+</div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

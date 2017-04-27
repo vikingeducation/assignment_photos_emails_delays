@@ -12,6 +12,14 @@ class UsersController < ApplicationController
   def show
   end
 
+  # GET /users/x/serve
+  def serve
+    @user= User.find(params[:user_id])
+    @photo = @user
+    send_data(@photo.profile_photo, type: @photo.mime_type, filename: "#{@photo.filename}.jpg", disposition: 'inline')
+  end
+
+
   # GET /users/new
   def new
     @user = User.new
@@ -62,13 +70,13 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :email)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:username, :email, :photo_data)
+  end
 end
