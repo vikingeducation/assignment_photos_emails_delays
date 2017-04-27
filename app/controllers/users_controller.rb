@@ -12,6 +12,13 @@ class UsersController < ApplicationController
   def show
   end
 
+  def send_image
+    @user = User.find(params[:user_id])
+    @photo = @user.photo_path
+    send_file(@photo, disposition: 'inline', type: 'image/jpeg')
+  end
+
+
   # GET /users/x/serve
   def serve
     @user= User.find(params[:user_id])
@@ -32,8 +39,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
+    @user = User.new(user_params.except(:photo_data))
+    @user.photo_path = upload(user_params[:photo_data])
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -49,7 +56,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      @user.photo_path = upload(user_params[:photo_data])
+      if @user.update(user_params.except(:photo_data))
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -78,5 +86,16 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:username, :email, :photo_data)
+  end
+
+  # writing to file
+  def upload(photo)
+    uploaded_io = photo
+    filename = uploaded_io.original_filename
+    filepath = Rails.root.join('public', 'uploads', filename)
+    File.open(filepath, 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    filepath
   end
 end
