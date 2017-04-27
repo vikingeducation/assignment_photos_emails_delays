@@ -22,8 +22,13 @@
   </div>
 
 <div class="field">
-  <%= f.label :photo_data %>
-  <%= f.file_field :photo_data, accept: 'image/png,image/gif,image/jpeg' %>
+  <%= f.label :profile_photo %>
+  <%= f.file_field :profile_photo, accept: 'image/png,image/gif,image/jpeg' %>
+</div>
+
+<div class="field">
+  <%= f.label :delete_profile_photo %>
+  <%= f.check_box :delete_profile_photo %>
 </div>
 
   <div class="actions">

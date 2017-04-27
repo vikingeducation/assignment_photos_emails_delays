@@ -39,8 +39,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params.except(:photo_data))
-    @user.photo_path = upload(user_params[:photo_data])
+    @user = User.new(user_params)
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -56,8 +55,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      @user.photo_path = upload(user_params[:photo_data])
-      if @user.update(user_params.except(:photo_data))
+      if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -85,7 +83,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:username, :email, :photo_data)
+    params.require(:user).permit(:username, :email, :profile_photo, :delete_profile_photo)
   end
 
   # writing to file
