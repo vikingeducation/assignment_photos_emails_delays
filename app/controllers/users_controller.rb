@@ -44,6 +44,8 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
+        # comment this out if using activejob
+          # User.delay.send_welcome_email(@user.id)
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -85,6 +87,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :profile_photo, :delete_profile_photo)
   end
+
+
 
   # writing to file
   def upload(photo)
