@@ -61,6 +61,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def serve
+    @user = User.find(params[:user_id])
+    photo_params = {
+      type: @user.mime_type, filename: "#{@user.filename}.jpg", disposition: "inline"
+    }
+    send_data(@user.profile_photo, photo_params)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -69,6 +77,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :photo_data)
     end
 end
