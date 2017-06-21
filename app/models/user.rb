@@ -1,12 +1,6 @@
 class User < ApplicationRecord
 
-  def photo_data=(photo_data)
-    filepath = Rails.root.join( 'public',
-                                'uploads',
-                                photo_data.original_filename )
-    self.profile_photo = filepath
-    self.filename = photo_data.original_filename
-    self.mime_type = photo_data.content_type
-  end
+  has_attached_file :profile_photo, styles: {medium: "300x300"}
+  validates_attachment_content_type :profile_photo, :content_type => /\Aimage\/.*\Z/
 
 end

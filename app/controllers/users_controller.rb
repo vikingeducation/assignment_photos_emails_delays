@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    save_to_filesystem(user_params[:photo_data])
 
     respond_to do |format|
       if @user.save
@@ -62,15 +61,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def serve
-    @user = User.find(params[:user_id])
-    photo_params = {
-      type: @user.mime_type, filename: "#{@user.filename}", disposition: "inline"
-    }
-    photo = File.open(@user.profile_photo, "rb")
-    send_data(photo.read, photo_params)
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -79,17 +69,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :photo_data)
-    end
-
-    def save_to_filesystem(photo_data)
-      filename = photo_data.original_filename
-      filepath = Rails.root.join( 'public',
-                                  'uploads',
-                                  filename )
-      File.open(filepath, 'wb') do |file|
-        file.write(photo_data.read)
-      end
+      params.require(:user).permit(:username, :email, :profile_photo)
     end
 
 end

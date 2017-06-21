@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20170621124811) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "profile_photo"
-    t.string "filename"
-    t.string "mime_type"
+    t.string "profile_photo_file_name"
+    t.string "profile_photo_content_type"
+    t.integer "profile_photo_file_size"
+    t.datetime "profile_photo_updated_at"
   end
 
 end
