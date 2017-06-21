@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    save_to_filesystem(user_params[:photo_data])
 
     respond_to do |format|
       if @user.save
@@ -64,9 +65,10 @@ class UsersController < ApplicationController
   def serve
     @user = User.find(params[:user_id])
     photo_params = {
-      type: @user.mime_type, filename: "#{@user.filename}.jpg", disposition: "inline"
+      type: @user.mime_type, filename: "#{@user.filename}", disposition: "inline"
     }
-    send_data(@user.profile_photo, photo_params)
+    photo = File.open(@user.profile_photo, "rb")
+    send_data(photo.read, photo_params)
   end
 
   private
@@ -79,4 +81,15 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :email, :photo_data)
     end
+
+    def save_to_filesystem(photo_data)
+      filename = photo_data.original_filename
+      filepath = Rails.root.join( 'public',
+                                  'uploads',
+                                  filename )
+      File.open(filepath, 'wb') do |file|
+        file.write(photo_data.read)
+      end
+    end
+
 end

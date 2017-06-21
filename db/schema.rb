@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170621124811) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.binary "profile_photo", limit: 10485760
+    t.string "profile_photo"
     t.string "filename"
     t.string "mime_type"
   end
