@@ -75,7 +75,8 @@ class UsersController < ApplicationController
   end
 
   def send_welcome_email
-    UserMailer.welcome(@user.id).deliver_later
+    #UserMailer.welcome(@user.id).deliver_later
+    UserMailer.welcome(@user.id).deliver
   end
 
 end
