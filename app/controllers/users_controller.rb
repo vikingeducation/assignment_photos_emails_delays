@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def upload
-    
+
   end
 
   # GET /users/1
@@ -73,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :profile_photo)
     end
 end

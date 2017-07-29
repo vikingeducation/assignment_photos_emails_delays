@@ -4,4 +4,11 @@
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %><br><br>
-<%= link_to 'Upload avatar', new_user_photo_path(@user) %>
+<!-- link_to 'Upload avatar', new_user_photo_path(@user) -->
+
+<h2>Upload your User's profile photo</h2>
+
+<%= form_for @user do |f| %>
+  <%= f.file_field :photo_data %>
+  <%= f.submit 'Upload Photo' %>
+<% end %>
