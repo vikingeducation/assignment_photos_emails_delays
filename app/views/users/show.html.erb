@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<div class="photo-wrapper">
+  <%= image_tag user_serve_path(@user.id) %>
+</div>
+
+
 <p>
   <strong>Username:</strong>
   <%= @user.username %>

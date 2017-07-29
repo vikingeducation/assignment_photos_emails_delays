@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728201751) do
+ActiveRecord::Schema.define(version: 20170729113318) do
 
   create_table "photos", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20170728201751) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.binary   "profile_photo", limit: 3145728
+    t.string   "filename"
+    t.string   "mime_type"
   end
 
 end
