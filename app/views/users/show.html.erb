@@ -6,7 +6,7 @@
     <%= image_tag user_serve_path(@user.id) %>
   </div>
 <% end %>
-
+<%= image_tag @user.avatar.expiring_url(10) %>
 <%= image_tag @user.avatar.url(:thumb) %>
 
 
