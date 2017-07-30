@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<div class="photo-wrapper">
-  <%= image_tag user_serve_path(@user.id) %>
-</div>
+<% if @user.profile_photo %>
+  <div class="photo-wrapper">
+    With barebones filesystem upload
+    <%= image_tag user_serve_path(@user.id) %>
+  </div>
+<% end %>
+
+<%= image_tag @user.avatar.url(:thumb) %>
 
 
 <p>

@@ -26,6 +26,13 @@
     <%= f.file_field :profile_photo %>
   </div>
 
+  <h3>OR</h3>
+  
+  <div class="field">
+    <%= f.label :avatar, "Used with Paperclip" %>
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

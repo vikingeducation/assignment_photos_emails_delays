@@ -45,11 +45,13 @@ class UsersController < ApplicationController
     #   end
     # end
 
-    @user = User.new(user_params.except(:profile_photo)) do |p|
-      if params[:user][:profile_photo]
+    if params[:user][:profile_photo]
+      @user = User.new(user_params.except(:profile_photo)) do |p|
         p.filename = upload
         p.mime_type = params[:user][:profile_photo].content_type
       end
+    else
+      @user = User.new(user_params)
     end
 
     respond_to do |format|
@@ -103,7 +105,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :profile_photo, :file_name, :mime_type)
+      params.require(:user).permit(:username, :email, :profile_photo, :file_name, :mime_type, :avatar)
     end
 
     def upload
