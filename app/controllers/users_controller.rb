@@ -9,10 +9,14 @@ class UsersController < ApplicationController
 
   def serve
     @user = User.find(params[:user_id])
-    send_data(@user.profile_photo,
-              :type => @user.mime_type,
-              :filename => "#{@user.filename}.jpg",
-              :disposition => "inline")
+    # send_data(@user.profile_photo,
+    #           :type => @user.mime_type,
+    #           :filename => "#{@user.filename}.jpg",
+    #           :disposition => "inline")
+
+    send_file("./public/uploads/#{@user.filename}",
+                type: @user.mime_type,
+                disposition: 'inline' )
   end
 
   # GET /users/1
@@ -29,13 +33,21 @@ class UsersController < ApplicationController
   def edit
   end
 
+
   # POST /users
   # POST /users.json
   def create
+    # @user = User.new(user_params.except(:profile_photo)) do |p|
+    #   if params[:user][:profile_photo]
+    #     p.profile_photo = params[:user][:profile_photo].read
+    #     p.filename = params[:user][:profile_photo].original_filename
+    #     p.mime_type = params[:user][:profile_photo].content_type
+    #   end
+    # end
+
     @user = User.new(user_params.except(:profile_photo)) do |p|
       if params[:user][:profile_photo]
-        p.profile_photo = params[:user][:profile_photo].read
-        p.filename = params[:user][:profile_photo].original_filename
+        p.filename = upload
         p.mime_type = params[:user][:profile_photo].content_type
       end
     end
@@ -93,4 +105,15 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :email, :profile_photo, :file_name, :mime_type)
     end
+
+    def upload
+      uploaded_io = params[:user][:profile_photo]
+      filename = uploaded_io.original_filename
+      filepath = Rails.root.join('public', 'uploads', filename)
+      File.open(filepath, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      filename
+    end
+
 end
