@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  after_create :send_welcome_email
+
 
   # GET /users
   # GET /users.json
@@ -119,8 +119,6 @@ class UsersController < ApplicationController
       filename
     end
 
-    def send_welcome_email
-      UserMailer.welcome(self).deliver!
-    end
+
 
 end
