@@ -11,7 +11,7 @@ class User < ApplicationRecord
                                   :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/
                                                     }
 
-  after_create :send_welcome_email
+  after_create :send_welcome_email_now
   # after_create :queue_welcome_email
 
 
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   private
-  def send_welcome_email
+  def send_welcome_email_now
     UserMailer.welcome(self).deliver!
   end
 
