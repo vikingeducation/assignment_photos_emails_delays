@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   def self.send_welcome_email(id)
     user = User.find(id)
-    UserMailer.welcome(user).deliver_later
+    UserMailer.welcome(user).deliver_later(wait: 10.minutes)
   end
 
   private
