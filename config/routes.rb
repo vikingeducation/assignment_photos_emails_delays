@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => 'users#show'
+  root :to => 'users#new'
   resources :users do
     get 'serve'
   end
