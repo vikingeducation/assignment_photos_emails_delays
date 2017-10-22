@@ -1,0 +1,14 @@
+<h1>Editing User</h1>
+
+<%= render 'form', user: @user %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %><br><br>
+<!-- link_to 'Upload avatar', new_user_photo_path(@user) -->
+
+<h2>Upload your User's profile photo</h2>
+
+<%= form_for @user do |f| %>
+  <%= f.file_field :profile_photo %>
+  <%= f.submit 'Upload Photo' %>
+<% end %>
