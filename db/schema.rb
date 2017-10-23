@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023074348) do
+ActiveRecord::Schema.define(version: 20171023075910) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.binary "photo_data", limit: 10485760
+    t.string "photo_filename"
+    t.string "photo_mime_type"
   end
 
 end
