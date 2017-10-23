@@ -61,6 +61,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def serve_photo
+    @user = User.find(params[:user_id])
+
+    send_data(@user.photo_data, type: @user.photo_mime_type, filename: @user.photo_filename, disposition: 'inline')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
