@@ -24,3 +24,4 @@
 
 # Ignore all photo uploads
 /public/uploads
+/public/system
