@@ -35,6 +35,7 @@ gem 'paperclip'
 # gem 'aws-sdk'
 gem 'aws-sdk', '~> 2.10'
 gem 'figaro'
+gem 'delayed_job_active_record'
 
 group :production do
   gem 'rails_12factor'
