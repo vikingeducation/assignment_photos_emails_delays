@@ -31,6 +31,12 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Set letter_opener as the delivery method for Action Mailer.
+  config.action_mailer.delivery_method = :letter_opener
+
+  # Set default dummy host parameter for Action Mailer.
+  config.action_mailer.default_url_options = { host: 'testapp.com' }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
