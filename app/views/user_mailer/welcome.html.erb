@@ -1,0 +1,11 @@
+# app/views/user_mailer/welcome.html.erb
+
+<h1>Welcome!</h1>
+
+<p>
+  Hello <%= @user.username %>, welcome to TestApp!
+</p>
+
+<p>
+  View your account at <%= link_to "#{user_url(@user)}", user_url(@user) %>
+</p>
