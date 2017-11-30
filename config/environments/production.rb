@@ -64,7 +64,7 @@ Rails.application.configure do
 
 
   # Configure Action Mailer for integration with SendGrid add-on on Heroku.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method ||= :smtp
   ActionMailer::Base.smtp_settings = {
       address:                'smtp.sendgrid.net',
