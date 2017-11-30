@@ -65,14 +65,15 @@ Rails.application.configure do
 
   # Configure Action Mailer for integration with SendGrid add-on on Heroku.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method ||= :smtp
   ActionMailer::Base.smtp_settings = {
-      address:          'smtp.sendgrid.net',
-      port:             '587',
-      authentication:   :plain,
-      user_name:        Rails.application.secrets.sendgrid_username,
-      password:         Rails.application.secrets.sendgrid_password,
-      domain:           'heroku.com'
+      address:                'smtp.sendgrid.net',
+      port:                   '587',
+      authentication:         :plain,
+      user_name:              Rails.application.secrets.sendgrid_username,
+      password:               Rails.application.secrets.sendgrid_password,
+      domain:                 'heroku.com',
+      enable_starttls_auto:   true
 
   }
   config.action_mailer.default_url_options = { host: 'still-cove-64200.herokuapp.com' }
