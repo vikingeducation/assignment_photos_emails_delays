@@ -62,12 +62,21 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "assignment_photos_emails_delays_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  # Set hostname for Action Mailer
+
+  # Configure Action Mailer for integration with SendGrid add-on on Heroku.
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+      address:          'smtp.sendgrid.net',
+      port:             '587',
+      authentication:   :plain,
+      user_name:        Rails.application.secrets.sendgrid_username,
+      password:         Rails.application.secrets.sendgrid_password,
+      domain:           'heroku.com'
+
+  }
   config.action_mailer.default_url_options = { host: 'still-cove-64200.herokuapp.com' }
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
