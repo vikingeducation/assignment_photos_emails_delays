@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'carrierwave', '~> 1.2'
+gem 'fog-aws'
+
 gem 'figaro', '~> 1.1.1'
 
 group :development, :test do

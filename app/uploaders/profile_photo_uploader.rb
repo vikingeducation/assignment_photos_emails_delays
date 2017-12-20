@@ -4,10 +4,10 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
-  storage :file
+  storage :fog
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "homework/photo/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def content_type_whitelist
