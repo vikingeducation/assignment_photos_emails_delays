@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'carrierwave', '~> 1.2'
+gem 'mini_magick', '~> 4.8.0'
 gem 'fog-aws'
 
 gem 'figaro', '~> 1.1.1'
