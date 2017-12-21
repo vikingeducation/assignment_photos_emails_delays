@@ -43,6 +43,7 @@ group :development, :test do
   gem 'paperclip'
   gem 'aws-sdk'
   gem 'figaro'
+  gem 'hirb'
 end
 
 group :development do
