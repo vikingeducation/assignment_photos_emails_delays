@@ -82,6 +82,11 @@ class UsersController < ApplicationController
     send_data(@photo.data,  :type => @photo.mime_type, 
                             :filename => "#{@photo.filename}.jpg",
                             :disposition => "inline")
+
+
+    # send_file("./public/uploads/#{@user.filename}",
+    #             type: @user.mime_type,
+    #             disposition: 'inline' )
   end
 
   # Using local filesystem
