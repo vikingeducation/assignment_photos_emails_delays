@@ -31,17 +31,6 @@ class UsersController < ApplicationController
 
        # check if a photo was included when creating a new User
        photo_upload = params[:photo_data]
-       # filename = Rails.root.join('public', 'uploads', photo_upload.original_filename)
- 
-       # if photo_upload
-       #   @user.filename = photo_upload.original_filename
-       #   @user.mime_type = photo_upload.content_type
- 
-       #  File.open(filename, 'wb') do |f|
-       #    f.write(photo_upload.read)
-       #  end
-       # end
- 
 
       if @user.save
         format.html { redirect_to @user, notice: 'User and photo was successfully created.' }
@@ -93,11 +82,6 @@ class UsersController < ApplicationController
     send_data(@photo.data,  :type => @photo.mime_type, 
                             :filename => "#{@photo.filename}.jpg",
                             :disposition => "inline")
-
-
-    # send_file("./public/uploads/#{@user.filename}",
-    #             type: @user.mime_type,
-    #             disposition: 'inline' )
   end
 
   # Using local filesystem
@@ -107,7 +91,6 @@ class UsersController < ApplicationController
   #   since our filesystem may not be available
   #   across different server instances!
   def upload
-    # @user = User.find(params[:user_id])
     uploaded_io = params[:user][:photo_data]
     filename = uploaded_io.original_filename
 
@@ -119,7 +102,6 @@ class UsersController < ApplicationController
     #   can NOT create a new folder, so you must already
     #   have a folder of that name "public/uploads" available.
 
-    # send_file(filepath, type: @user.mime_type, disposition: 'inline')
     File.open(filepath, 'wb') do |file|
       # Note that we're using the `read` method
       file.write(uploaded_io.read)
