@@ -21,11 +21,16 @@
     <%= f.text_field :email %>
   </div>
 
-  <div class="field">
-    <%= f.label :photo_data %>
-    <%= f.file_field :photo_data, accept: 'image/png,image/jpg,image/gif' %>
-  </div>
+<!-- This is for the database blob or storing an image in the filesystem -->
+  <!-- <div class="field"> -->
+     <!-- f.label :photo_data %> -->
+     <!-- f.file_field :photo_data, accept: 'image/png,image/jpg,image/gif' %> -->
+  <!-- </div> -->
 
+  <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

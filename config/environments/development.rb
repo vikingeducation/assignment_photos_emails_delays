@@ -72,5 +72,9 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
+  # config/environments/development.rb
+  # This is your imagemagick directory, retrieved
+  # using `which convert`
+  Paperclip.options[:command_path] = "/usr/local/bin"
 end
 

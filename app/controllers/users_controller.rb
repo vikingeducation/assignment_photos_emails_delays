@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     respond_to do |format|
 
        # check if a photo was included when creating a new User
-       photo_upload = params[:photo_data]
+       # photo_upload = params[:photo_data]
 
       if @user.save
         format.html { redirect_to @user, notice: 'User and photo was successfully created.' }
@@ -62,10 +62,14 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
 
-    if @user.filename
-      filename = Rails.root.join('public', 'uploads', @user.filename)
-      File.delete(filename) if File.exist?(filename)
-    end
+    # Deleting a file that is on the filsystem
+    # if @user.filename
+      # filename = Rails.root.join('public', 'uploads', @user.filename)
+      # File.delete(filename) if File.exist?(filename)
+    # end
+    
+    # Deleting image using Paperclip
+    @user.avatar = nil
       
     @user.destroy
     respond_to do |format|
@@ -121,6 +125,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :photo_data)
+      params.require(:user).permit(:username, :email, :photo_data, :avatar)
     end
 end
