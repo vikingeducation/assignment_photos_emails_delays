@@ -28,6 +28,21 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     respond_to do |format|
+
+       # check if a photo was included when creating a new User
+       photo_upload = params[:photo_data]
+       # filename = Rails.root.join('public', 'uploads', photo_upload.original_filename)
+ 
+       # if photo_upload
+       #   @user.filename = photo_upload.original_filename
+       #   @user.mime_type = photo_upload.content_type
+ 
+       #  File.open(filename, 'wb') do |f|
+       #    f.write(photo_upload.read)
+       #  end
+       # end
+ 
+
       if @user.save
         format.html { redirect_to @user, notice: 'User and photo was successfully created.' }
         # redirect_to(@photo, :notice => 'Photo was successfully created.')
@@ -57,6 +72,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+
+    if @user.filename
+      filename = Rails.root.join('public', 'uploads', @user.filename)
+      File.delete(filename) if File.exist?(filename)
+    end
+      
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
@@ -72,6 +93,11 @@ class UsersController < ApplicationController
     send_data(@photo.data,  :type => @photo.mime_type, 
                             :filename => "#{@photo.filename}.jpg",
                             :disposition => "inline")
+
+
+    # send_file("./public/uploads/#{@user.filename}",
+    #             type: @user.mime_type,
+    #             disposition: 'inline' )
   end
 
   # Using local filesystem
@@ -81,8 +107,10 @@ class UsersController < ApplicationController
   #   since our filesystem may not be available
   #   across different server instances!
   def upload
-    uploaded_io = params[:person][:photo_data]
+    # @user = User.find(params[:user_id])
+    uploaded_io = params[:user][:photo_data]
     filename = uploaded_io.original_filename
+
     filepath = Rails.root.join( 'public', 
                                 'uploads', 
                                 filename )
@@ -90,6 +118,8 @@ class UsersController < ApplicationController
     # Note that this will create a new file "filename" but it
     #   can NOT create a new folder, so you must already
     #   have a folder of that name "public/uploads" available.
+
+    # send_file(filepath, type: @user.mime_type, disposition: 'inline')
     File.open(filepath, 'wb') do |file|
       # Note that we're using the `read` method
       file.write(uploaded_io.read)
