@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-         User.delay.send_welcome_email(@user.id)
+        User.delay.send_welcome_email(@user.id)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -72,4 +72,11 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :email)
     end
+
+    def self.send_welcome_email(id)
+      user = User.find(id)
+      UserMailer.welcome(user).deliver!
+    end
+    handle_asynchronously :send_welcome_email
+
 end
