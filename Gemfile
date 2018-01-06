@@ -46,6 +46,8 @@ group :development, :test do
   gem 'figaro'
   gem 'hirb'
   gem 'actionmailer'
+  # Delayed Job gives you tons of options for customizing the tasks and for specifying how the queue should be managed.
+  gem 'delayed_job_active_record'
 end
 
 group :development do

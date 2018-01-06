@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    # @photo = Photo.new(photo_params)
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -33,7 +32,12 @@ class UsersController < ApplicationController
        # photo_upload = params[:photo_data]
 
       if @user.save
-        format.html { redirect_to @user, notice: 'User and photo was successfully created.' }
+        # sign_in(@user)
+        # User.send_welcome_email
+
+        @user.delay.send_welcome_email
+
+         format.html { redirect_to @user, notice: 'User and photo was successfully created.' }
         # redirect_to(@photo, :notice => 'Photo was successfully created.')
         format.json { render :show, status: :created, location: @user }
       else
