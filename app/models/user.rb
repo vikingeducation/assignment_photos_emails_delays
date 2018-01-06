@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+   after_create :send_welcome_email
   # This should be in a photo model but for demonstration purposes, it is in the user model
    # Using VIRTUAL ATTRIBUTES to set our photo
   # 
@@ -36,5 +37,10 @@ class User < ApplicationRecord
   # validates_attachment :avatar, :presence => true,
     # :content_type => { :content_type => "image/jpeg" },
     # :size => { :in => 0..10.kilobytes }
-
+  private
+  def send_welcome_email
+    # Note that the bang (!) method will blow
+    # up (roll back) the save transaction on failure
+    UserMailer.welcome(self).deliver!
+  end
 end

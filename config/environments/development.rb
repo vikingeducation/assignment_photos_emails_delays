@@ -76,5 +76,11 @@ Rails.application.configure do
   # This is your imagemagick directory, retrieved
   # using `which convert`
   Paperclip.options[:command_path] = "/usr/local/bin"
+  
+  # Setup emails
+  config.action_mailer.default_url_options = {:host => "localhost:3000"}
+
+   # Letter Opener allows you to fake the sending of your email and, instead of delivering it to a user, Rails will open the email in your browser in HTML format
+  config.action_mailer.delivery_method = :letter_opener
 end
 
