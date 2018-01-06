@@ -33,9 +33,9 @@ class UsersController < ApplicationController
 
       if @user.save
         # sign_in(@user)
-        # User.send_welcome_email
 
-        @user.delay.send_welcome_email
+        # @user.delay.send_welcome_email
+        User.delay.send_welcome_email(@user.id)
 
          format.html { redirect_to @user, notice: 'User and photo was successfully created.' }
         # redirect_to(@photo, :notice => 'Photo was successfully created.')

@@ -37,11 +37,11 @@ class User < ApplicationRecord
   # validates_attachment :avatar, :presence => true,
     # :content_type => { :content_type => "image/jpeg" },
     # :size => { :in => 0..10.kilobytes }
-  private
-  def send_welcome_email
+  # private
+  def self.send_welcome_email(id)
     # Note that the bang (!) method will blow
     # up (roll back) the save transaction on failure
-    # user = User.find(id)
-    UserMailer.welcome(self).deliver!
+    user = User.find(id)
+    UserMailer.welcome(user).deliver!
   end
 end
