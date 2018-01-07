@@ -32,10 +32,7 @@ class UsersController < ApplicationController
        # photo_upload = params[:photo_data]
 
       if @user.save
-        # @user.delay.send_welcome_email
-        # User.delay.send_welcome_email(@user.id)
-         User.send_welcome_email(@user.id)
-
+        User.delay.send_welcome_email(@user.id)
          format.html { redirect_to @user, notice: 'User and photo was successfully created.' }
         # redirect_to(@photo, :notice => 'Photo was successfully created.')
         format.json { render :show, status: :created, location: @user }
