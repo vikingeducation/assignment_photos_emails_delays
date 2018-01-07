@@ -103,4 +103,6 @@ Rails.application.configure do
       :secret_access_key => Rails.application.secrets.aws_secret_access_key
     }
   }
+  # Letter Opener allows you to fake the sending of your email and, instead of delivering it to a user, Rails will open the email in your browser in HTML format
+  config.action_mailer.delivery_method = :letter_opener
 end
