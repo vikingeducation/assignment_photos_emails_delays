@@ -104,7 +104,7 @@ Rails.application.configure do
     }
   }
   # Setup emails
-  config.action_mailer.default_url_options = {:host => "photos-emails-test-project.herokuapp.com"}
+  config.action_mailer.default_url_options = {:host => "photos-emails-test-project.heroku.com"}
   # Letter Opener allows you to fake the sending of your email and, instead of delivering it to a user, Rails will open the email in your browser in HTML format
   config.action_mailer.delivery_method = :letter_opener
 end
