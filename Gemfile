@@ -38,7 +38,7 @@ gem 'figaro'
 gem 'actionmailer'
   # Delayed Job gives you tons of options for customizing the tasks and for specifying how the queue should be managed.
 gem 'delayed_job_active_record'
-gem 'letter_opener'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,6 +47,7 @@ group :development, :test do
   gem 'better_errors'
   # The next 2 gems are for using paperclip with S3
   gem 'hirb'
+  gem 'letter_opener'
 end
 
 group :development do
