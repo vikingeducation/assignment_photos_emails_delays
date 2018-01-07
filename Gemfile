@@ -38,6 +38,7 @@ gem 'figaro'
 gem 'actionmailer'
   # Delayed Job gives you tons of options for customizing the tasks and for specifying how the queue should be managed.
 gem 'delayed_job_active_record'
+gem 'letter_opener'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,7 +58,7 @@ group :development do
   gem 'sqlite3'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'letter_opener'
+  
 end
 
 group :production do
