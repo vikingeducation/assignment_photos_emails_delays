@@ -32,8 +32,6 @@ class UsersController < ApplicationController
        # photo_upload = params[:photo_data]
 
       if @user.save
-        # sign_in(@user)
-
         # @user.delay.send_welcome_email
         # User.delay.send_welcome_email(@user.id)
          User.send_welcome_email(@user.id)
@@ -128,7 +126,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :email, :photo_data, :avatar)
     end
