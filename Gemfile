@@ -32,6 +32,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'figaro'
+gem 'actionmailer'
+  # Delayed Job gives you tons of options for customizing the tasks and for specifying how the queue should be managed.
+gem 'delayed_job_active_record'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -39,13 +45,7 @@ group :development, :test do
   gem 'pry'
   gem 'better_errors'
   # The next 2 gems are for using paperclip with S3
-  gem 'paperclip'
-  gem 'aws-sdk'
-  gem 'figaro'
   gem 'hirb'
-  gem 'actionmailer'
-  # Delayed Job gives you tons of options for customizing the tasks and for specifying how the queue should be managed.
-  gem 'delayed_job_active_record'
 end
 
 group :development do
