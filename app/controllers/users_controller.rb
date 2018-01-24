@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        upload
+        # upload
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -50,15 +50,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def upload
-    uploaded_io = params[:user][:photo_data]
-    filename = uploaded_io.original_filename
-    filepath = Rails.root.join( 'public', 'uploads', filename )
+  # def upload
+  #   uploaded_io = params[:user][:photo_data]
+  #   filename = uploaded_io.original_filename
+  #   filepath = Rails.root.join( 'public', 'uploads', filename )
 
-    File.open(filepath, 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
-  end
+  #   File.open(filepath, 'wb') do |file|
+  #     file.write(uploaded_io.read)
+  #   end
+  # end
 
   private
     def set_user
@@ -66,6 +66,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :email, :photo_data)
+      params.require(:user).permit(:username, :email, :profile_pic, :delete_profile_pic)
     end
 end

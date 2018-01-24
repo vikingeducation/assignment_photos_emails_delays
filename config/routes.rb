@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users do
+    get "serve"   # user_serve_path, e.g. /users/1/serve
+  end
 end
