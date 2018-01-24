@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'faker'
 gem 'paperclip'
 gem 'figaro'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 3.0' # this is because newer versions are not compatible with paperclip's current setup
 
 
 

@@ -54,4 +54,16 @@ Rails.application.configure do
 
   # Paperclip
   Paperclip.options[:command_path] = "/usr/local/bin"
+
+  # Paperclip / AWS Config
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_region: ENV['AWS_REGION'],
+    s3_host_name: ENV['AWS_ENDPOINT'],
+    s3_credentials: {
+      bucket: ENV['AWS_BUCKET'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
 end

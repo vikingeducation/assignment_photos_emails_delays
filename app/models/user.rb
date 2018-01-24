@@ -9,10 +9,10 @@ class User < ApplicationRecord
   before_validation { profile_pic.clear if delete_profile_pic == '1' }
 
   # You'll want to make sure you've whitelisted only acceptable content types to avoid attacks
-  validates_attachment_content_type :profile_pic, :content_type => /\Aimage\/.*\Z/
+  # validates_attachment_content_type :profile_pic, :content_type => /\Aimage\/.*\Z/
   # or
-  # validates_attachment :profile_pic, :presence => true,
-  #   :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
-  #   :size => { :in => 0..1000.kilobytes }
+  validates_attachment :profile_pic,
+    :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
+    :size => { :in => 0..10000.kilobytes }
 
 end
