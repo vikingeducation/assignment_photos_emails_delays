@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   attr_accessor :delete_profile_pic
 
@@ -17,11 +17,9 @@ class User < ApplicationRecord
     :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
     :size => { :in => 0..10000.kilobytes }
 
-
-  private
-
-    def send_welcome_email
-      UserMailer.welcome(self).deliver!
-    end
+  def self.send_welcome_email(id)
+    user = User.find(id)
+    UserMailer.welcome(user).deliver
+  end
 
 end

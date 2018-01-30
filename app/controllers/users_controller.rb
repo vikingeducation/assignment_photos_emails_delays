@@ -20,6 +20,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        # User.delay.send_welcome_email(@user.id)
+        User.delay(run_at: 1.minutes.from_now).send_welcome_email(@user.id)
+
         # upload
         format.html { redirect_to users_url, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: users_url }
