@@ -38,6 +38,8 @@ gem 'aws-sdk', '< 3.0' # this is because newer versions are not compatible with 
 gem 'seed_dump'
 
 gem 'premailer-rails' # configures inline styles for mailer templates
+gem 'nokogiri' # parses html for premailer-rails (and other things)
+# gem 'delayed_job_active_record'
 
 
 group :development, :test do
