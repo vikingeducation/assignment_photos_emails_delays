@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  after_create :send_welcome_email
+
   attr_accessor :delete_profile_pic
 
   has_attached_file :profile_pic, :styles => { :large => "600x600",:medium => "300x300", :thumb => "100x100" },
@@ -14,5 +16,12 @@ class User < ApplicationRecord
   validates_attachment :profile_pic,
     :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
     :size => { :in => 0..10000.kilobytes }
+
+
+  private
+
+    def send_welcome_email
+      UserMailer.welcome(self).deliver!
+    end
 
 end
